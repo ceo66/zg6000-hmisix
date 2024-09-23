@@ -1,0 +1,182 @@
+/* App.css */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 6px;
+  }
+  
+  .grid-item {
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+       
+  }
+  .grid-item1 {
+    height: 80px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+  }
+  .grid-item2 {
+    height: 80px;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+  }
+  .grid-item3 {
+   
+    display: flex;
+  gap: 5px;
+    /* 可根据需要调整按钮之间的间距 */
+    align-items: center;
+  }
+    .grid-item4 {
+      height: 180px;
+  
+      display: flex;
+    align-items: center;
+      /* margin-left: 0px; */
+      /* 去掉与输入框之间的间距 */
+      width:50%
+      
+    }
+        .grid-item5 {
+          display: flex;
+          /* justify-content: flex-start; */
+          justify-content: space-between;
+            /* 分开排列，确保两个表格大小一致 */
+          /* 左对齐 */
+          /* align-items: center; */
+          align-items: stretch;
+            /* 确保两个子元素的高度一致 */
+        }
+                .grid-item5>.left-table {
+                  flex: 2;
+                  /* 左边表格占 2 份 */
+                }
+        
+                .grid-item5>.right-table {
+                  flex: 5;
+                  /* 右边表格占 5 份 */
+                }
+.grid-item6 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0;
+  /* 确保没有上边距 */
+  padding-top: 0;
+  /* 确保没有内部上边距 */
+  margin-top: -10px;
+  /* 使内容更紧贴上方 */
+}
+
+
+  
+ .input1{
+    width: 86%;
+    padding: 8px;
+    box-sizing: border-box;
+    background-color:#bbbbbb;
+  }
+ .input2{
+    width: 50%;
+    padding: 8px;
+    box-sizing: border-box;
+    background-color: #bbbbbb;
+  }
+  .input3 {
+    height: 150px;
+    width: 50%;
+    padding: 8px;
+    background-color: #bbbbbb;
+   
+  }
+ .input4{
+    height: 60px;
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    background-color: #bbbbbb;
+   
+  }
+
+     .input5{
+       height: 150px;
+       width: 50%;
+       padding: 8px;
+       background-color: #bbbbbb;
+      margin-right: 0px;
+        /* 去掉与表格之间的间距 */
+  
+     }
+
+   .input6 {
+      /* flex: 2; */
+        /* 使两个表格平分父容器的宽度 */
+              width: 42%;
+              /* padding: 8px; */
+              /* box-sizing: border-box; */
+      /* //  background-color: #bbbbbb;  */
+              height: 200px;
+                  box-sizing: border-box;
+                    /* 确保padding和border被包括在内 */
+                    overflow: auto;
+                
+            }
+                         .input7 {
+                           /* flex: 5; */
+                           /* 使两个表格平分父容器的宽度 */
+                           width: 58%;
+                           /* padding: 8px; */
+                           /* box-sizing: border-box; */
+                           /* //  background-color: #bbbbbb;  */
+                           height: 200px;
+                           box-sizing: border-box;
+                           /* 确保padding和border被包括在内 */
+                           overflow: auto;
+
+                            border: 1px solid #0000ff;
+                              /* 边框颜色修改为蓝色 */
+                              /* 添加黑色边框 */
+                              border-radius: 5px;
+                              /* 添加圆角边框，可以根据需要调整 */
+            
+                         }
+          
+
+
+
+     /* Do14-MQ.module.css */
+  
+     /* 表头纵向排列样式 */
+     .verticalHeader {
+       writing-mode: vertical-lr;
+       /* 将文字方向改为竖排 */
+       transform: rotate(180deg);
+       /* 使文字从下往上显示 */
+       text-align: center;
+       /* 文字居中 */
+       white-space: nowrap;
+       /* 防止文字换行 */
+       height: 100px;
+       /* 根据需要调整表头单元格的高度 */
+     }
+  
+     /* 数据列纵向排列样式 */
+     .verticalData {
+       writing-mode: vertical-lr;
+       /* 将文字方向改为竖排 */
+       transform: rotate(180deg);
+       /* 使文字从下往上显示 */
+       text-align: center;
+       /* 文字居中 */
+       white-space: nowrap;
+       /* 防止文字换行 */
+     }
+         .selected-row {
+           background-color: blue !important;
+           /* 背景色设置为蓝色 */
+           color: white;
+           /* 文字颜色设置为白色，以确保在蓝色背景下可读 */
+         }

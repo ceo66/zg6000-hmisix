@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+        function disableBrowserKeys() {
+            const keyCodeMap = {
+                // 91: true, // command
+                61: true,
+                107: true, // 数字键盘 +
+                109: true, // 数字键盘 -
+                173: true, // 火狐 - 号
+                187: true, // +
+                189: true, // -
+            };
+            // 覆盖鼠标滑动
+            document.body.addEventListener('wheel', (e) => {
+                if (e.ctrlKey) {
+                    if (e.deltaY < 0) {
+                        e.preventDefault();
+                        return false;
+                    }
+                    if (e.deltaY > 0) {
+                        e.preventDefault();
+                        return false;
+                    }
+                }
+            }, { passive: false });
+            /*捕获系统Ctrl + S按键*/
+            document.onkeydown = (e) => {
+                let theEvent = e || window.event;
+                let code = theEvent.keyCode || theEvent.which || theEvent.charCode;
+                //Ctrl + S
+                if (code === 83 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) {
+                    e.preventDefault();
+                }
+            }
+        };
+
+
+        function zgInit(content, parameter, callback) {
+            document.open();
+            document.write('');
+            document.close();
+            document.open();
+            document.write(content);
+            document.close();
+            window.zgParameter = parameter;
+            window.zgReload = () => {
+                callback();
+            }
+            setTimeout(() => {
+                disableBrowserKeys();
+            }, 200);
+        }
+    </script>
+</head>
+
+<body>
+    <div style="width:100px;height:100px;background-color: aqua;"></div>
+</body>
+
+</html>

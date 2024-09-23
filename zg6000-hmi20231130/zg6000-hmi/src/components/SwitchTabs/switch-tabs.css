@@ -1,0 +1,117 @@
+.switch-tabs {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+}
+
+.switch-tabs .nav {
+    padding: 0px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 0;
+    list-style: none;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.switch-tabs .nav .nav-div-active {
+    display: flex;
+    border-radius: 6px;
+    padding: 3px 3px;
+    margin: 3px 3px;
+    min-width: 80px;
+    /* background-color: #458B74; */
+    background-image: linear-gradient(to top left, #273c72, #458B74);
+    border-width: 1;
+    border-style: solid solid solid solid;
+    border-color: #273c72;
+    justify-content: center;
+    align-items: center;
+}
+
+.switch-tabs .nav .nav-div {
+    display: flex;
+    border-radius: 6px;
+    padding: 3px 2px;
+    margin: 3px 3px;
+    min-width: 80px;
+    border-width: 1;
+    border-style: solid solid solid solid;
+    border-color: #273c72;
+    justify-content: center;
+    align-items: center;
+}
+
+.switch-tabs .nav-div-span {
+    flex: 1;
+    margin: 0px 6px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.switch-tabs .nav-div:hover {
+    background-color: #42586f;
+    text-decoration: none;
+}
+
+.switch-tabs .nav-div-close {
+    cursor: pointer;
+}
+
+.switch-tabs .nav-div-close:hover {
+    color: #6495ED;
+    text-decoration: none;
+}
+
+
+
+
+.switch-tabs .content-active {
+    display: "";
+    flex: 1;
+    overflow: auto;
+}
+
+.switch-tabs .content-hide {
+    display: none;
+    flex: 1;
+    overflow: auto;
+}
+
+
+
+
+
+/* ===========定义tab标签新的样式 =========================*/
+.switch-tabs .nav-new { 
+    padding: 3px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 0;
+    list-style: none;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.switch-tabs .nav-new .nav-div-active {
+    display: flex;
+    border-radius: 6px;
+    padding: 3px 3px;
+    margin: 3px 2px;
+    min-width: 80px;
+    border-bottom: #FF8C00;
+    border-bottom-style: solid;
+    justify-content: center;
+    align-items: center;
+}
+
+.switch-tabs .nav-new .nav-div {
+    display: flex;
+    border-radius: 6px;
+    padding: 3px 3px;
+    margin: 3px 2px;
+    min-width: 80px;
+    justify-content: center;
+    align-items: center;
+}
+

@@ -1,0 +1,240 @@
+html,
+body {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  overflow: auto;
+  color: #bbbbbb;
+  min-width: 1000px;
+}
+
+.sys-root {
+  width: 100%;
+  height: 100%;
+  /* min-width: 1366px; */
+  min-width: 1000px;
+  overflow: auto;
+}
+
+.sys-menu-width {
+  width: 150px;
+}
+
+.sys-bg {
+  background-image: linear-gradient(to top left, #273c72, #192334);
+}
+
+/* 垂直且水平居中 */
+.sys-vh-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sys-subsystem-title {
+  border-radius: 3px;
+  background-image: linear-gradient(to top, #273c72, #4f4f4f, #273c72);
+  color: #ffffff;
+  height: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* cursor: pointer; */
+  font-size: 1.2rem;
+  letter-spacing: 0.1rem;
+}
+
+/*设定滚动条的宽度*/
+*::-webkit-scrollbar {
+  width: 3px;
+  height: 13px;
+}
+
+/*设定滚动条的颜色*/
+*::-webkit-scrollbar-thumb {
+  background: #8b8989;
+  border-radius: 3px;
+}
+
+.sys-color-white {
+  color: #ffffff;
+}
+
+.sys-color-black {
+  color: #000000;
+}
+
+.sys-color-red {
+  color: #d93545;
+}
+
+.sys-color-green {
+  color: #00c050;
+}
+
+.sys-color-blue {
+  color: #4169e1;
+}
+
+.sys-color-yellow {
+  color: #ffd700;
+}
+
+.sys-color-grey {
+  color: #585b5f;
+}
+
+.sys-stroke-white {
+  stroke: #ffffff;
+}
+
+.sys-stroke-red {
+  stroke: #d93545;
+}
+
+.sys-stroke-green {
+  stroke: #00c050;
+}
+
+.sys-stroke-black {
+  stroke: #000000;
+}
+
+.sys-stroke-blue {
+  stroke: #4169e1;
+}
+
+.sys-stroke-yellow {
+  stroke: #ffd700;
+}
+
+.sys-stroke-grey {
+  stroke: #585b5f;
+}
+
+.sys-fill-white {
+  fill: #ffffff;
+  background-color: #ffffff;
+}
+
+.sys-fill-red {
+  fill: #d93545;
+  background-color: #d93545;
+}
+
+.sys-fill-black {
+  fill: #000000;
+  background-color: #000000;
+}
+
+.sys-fill-green {
+  fill: #00c050;
+  background-color: #00c050;
+}
+
+.sys-fill-blue {
+  fill: #4169e1;
+  background-color: #4169e1;
+}
+
+.sys-fill-yellow {
+  fill: #ffd700;
+  background-color: #ffd700;
+  color: #363636;
+}
+
+.sys-fill-grey {
+  fill: #585b5f;
+  background-color: #585b5f;
+}
+
+@keyframes zgTwinkleSimulate {
+  from {
+    opacity: 0.1;
+    stroke-width: 1px;
+  }
+
+  to {
+    opacity: 1;
+    stroke-width: 8px;
+  }
+}
+
+.sys-twinkle-simulate {
+  animation: zgTwinkleSimulate 500ms infinite alternate linear;
+  /*-webkit-animation:zgTwinkleAnimation 500ms infinite alternate linear;*/
+  /* Safari 和 Chrome */
+}
+
+.sys-opacity-1 {
+  opacity: 0.1;
+}
+
+.sys-opacity-2 {
+  opacity: 0.2;
+}
+
+.sys-opacity-3 {
+  opacity: 0.3;
+}
+
+.sys-opacity-4 {
+  opacity: 0.4;
+}
+
+.sys-opacity-5 {
+  opacity: 0.5;
+}
+
+.sys-opacity-6 {
+  opacity: 0.6;
+}
+
+.sys-opacity-7 {
+  opacity: 0.7;
+}
+
+.sys-opacity-8 {
+  opacity: 0.8;
+}
+
+.sys-opacity-9 {
+  opacity: 0.9;
+}
+
+.sys-fs-1 {
+  font-size: calc(1.375rem + 1.5vw) !important;
+}
+
+.sys-fs-2 {
+  font-size: calc(1.325rem + 0.9vw) !important;
+}
+
+.sys-fs-3 {
+  font-size: calc(1.3rem + 0.6vw) !important;
+}
+
+.sys-fs-4 {
+  font-size: calc(1.275rem + 0.3vw) !important;
+}
+
+.sys-fs-5 {
+  font-size: 1.15rem !important;
+}
+
+.sys-fs-6 {
+  font-size: 1rem !important;
+}
+
+.sys-fs-7 {
+  font-size: 0.85rem !important;
+}
+
+.sys-fs-8 {
+  font-size: 0.75rem !important;
+}
+
+.sys-cursor-pointer {
+  cursor: pointer;
+}

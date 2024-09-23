@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>ZG6000</title>
+  <script type="text/javascript">
+    mxBasePath = 'src';
+  </script>
+
+  <!-- <meta http-equiv="Cache-Control" content="max-age=7200" />
+  <meta http-equiv="Expires" content="Mon, 20 Jul 2209 23:00:00 GMT" /> -->
+
+  <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="description" content="Web site created using create-react-app" />
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+  <!--mxClient-->
+  <script type="text/javascript" src="js/mxClient.min.js"></script>
+
+  <script>
+    function getClientID() {
+      let clientID = localStorage.getItem("clientUnique")
+      console.log("getClientID：" + clientID);
+      return clientID;
+    }
+  </script>
+
+</head>
+
+<body oncontextmenu="return false" style="user-select: none;">
+  <div class="sys-root" id="root"></div>
+</body>
+
+</html>

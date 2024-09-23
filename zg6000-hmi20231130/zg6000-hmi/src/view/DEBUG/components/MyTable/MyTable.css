@@ -1,0 +1,31 @@
+/* MyTable.css */
+
+.ant-table-tbody>tr>td {
+    padding: 8px;
+    /* 调整单元格内边距 */
+}
+
+.ant-table-row {
+    height: 40px
+    /* 调整每行的高度 */
+}
+
+.ant-table-tbody>tr.ant-table-row:hover>td {
+    background-color: #3c4454 !important;
+    /* 鼠标悬停时的背景色 */
+}
+
+/* 如果有选中行的样式也需要调整的话 */
+.ant-table-tbody>tr.ant-table-row-selected>td {
+    background-color: #e6f7ff;
+    /* 选中行的背景色 */
+}
+.ant-table-tbody>tr>td {
+    padding: 2px !important;
+    font-size: 0.85rem !important
+}
+
+.ant-table-thead>tr>th {
+    padding: 6px !important;
+    font-size: 0.85rem !important;
+}

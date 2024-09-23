@@ -1,0 +1,54 @@
+.modal-top {
+    position: absolute;
+    height: 600px;
+    width: 100%;
+    top: 0px;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-bottom {
+    position: absolute;
+    height: 600px;
+    width: 100%;
+    bottom: 0px;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-right {
+    position: absolute;
+    height: 100%;
+    width: 600px;
+    right: 0px;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-left {
+    position: absolute;
+    height: 100%;
+    width: 600px;
+    left: 0px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+@keyframes delayed-show-animation {
+    from { 
+        opacity: 0;
+    } 
+	to {
+	    opacity: 0;
+    }
+}
+
+.delayed-show
+{
+   /* animation:zgOpacityAnimation 800ms infinite alternate linear;*/
+    animation-name: delayed-show-animation;
+    animation-duration: 500ms;
+    animation-iteration-count: 1;
+    animation-direction: alternate-reverse; 
+}

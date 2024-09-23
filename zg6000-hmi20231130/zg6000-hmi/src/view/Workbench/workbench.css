@@ -1,0 +1,62 @@
+/* .ant-table-tbody>tr>td {
+    padding: 2px !important;
+    font-size: 0.85rem !important
+}
+
+.ant-table-thead>tr>th {
+    padding: 6px !important;
+    font-size: 0.85rem !important;
+} */
+
+
+.simple-keyboard {
+    max-width: 850px;
+}
+
+/*
+    Theme: myTheme1
+  */
+.simple-keyboard.myTheme1 {
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 0;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.simple-keyboard.myTheme1 .hg-button {
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+}
+
+.simple-keyboard.myTheme1 .hg-button:active {
+    background: #1c4995;
+    color: white;
+}
+
+#root .simple-keyboard.myTheme1+.simple-keyboard-preview {
+    background: #1c4995;
+}
+
+
+@keyframes zgOpacityAnimationCount {
+    from { 
+        opacity: 0;
+    } 
+	to {
+	    opacity: 0;
+    }
+}
+
+.zgOpacityCount
+{
+   /* animation:zgOpacityAnimation 800ms infinite alternate linear;*/
+    animation-name: zgOpacityAnimationCount;
+    animation-duration: 800ms;
+    animation-iteration-count: 2;
+    animation-direction: alternate-reverse; 
+}
+

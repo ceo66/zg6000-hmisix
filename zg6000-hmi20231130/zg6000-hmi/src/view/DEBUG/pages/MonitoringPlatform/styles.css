@@ -1,0 +1,52 @@
+/* styles.css */
+.selected-row {
+    background-color: blue !important;
+    color: white;
+}
+
+.fixed-modal {
+    width: 80vw !important;
+    /* 弹窗宽度 */
+    height: 80vh !important;
+    /* 弹窗高度 */
+    overflow-y: auto;
+    /* 启用垂直滚动条 */
+}
+
+.fixed-modal .ant-modal-content {
+    height: 100%;
+    /* 设置弹窗内容高度 */
+}
+
+.fixed-modal .ant-modal-body {
+    height: calc(100% - 55px);
+    /* 设置弹窗主体高度，减去标题和页脚的高度 */
+    overflow-y: auto;
+    /* 启用垂直滚动条 */
+}
+
+.custom-scroll-container {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+}
+
+.vertical-scroll-content {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    /* 横向溢出时隐藏 */
+}
+
+.horizontal-scroll-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    /* 纵向溢出时隐藏 */
+}
+
+.custom-modal-body {
+    height: 80vh;
+    overflow-y: auto;
+}

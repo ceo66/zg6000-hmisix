@@ -1,0 +1,49 @@
+/* ConstructionSchedulePage.css */
+.construction-schedule-container {
+    height: 100%;
+    margin: 0 auto;
+    overflow: 'auto';
+    display: flex;
+    flex-direction: column;
+}
+
+.construction-schedule-container h1 {
+    font-size: 24px;
+    
+}
+
+.filter-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+.schedule-item-date{
+    padding: 20px;
+}
+.filter-input {
+    width: 300px;
+}
+
+.schedule-list {
+    list-style: none;
+    padding: 10px;
+    flex:1;
+    overflow-y: auto;
+    overflow-x: visible;
+}
+
+.schedule-item {
+    border: 1px solid #e8e8e8;
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.schedule-item-date {
+    font-weight: bold;
+}
+
+.schedule-item-title {
+    margin-top: 5px;
+}

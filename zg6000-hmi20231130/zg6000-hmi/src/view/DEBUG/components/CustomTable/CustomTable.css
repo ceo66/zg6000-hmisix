@@ -1,0 +1,87 @@
+.custom1-table-row {
+  min-height: auto;
+}
+
+.ant-table-tbody > .custom1-table-row-selected > td {
+  background: rgb(0, 140, 255) !important;
+}
+.ant-table-tbody > .custom1-table-row-selected:hover > td {
+  background: rgb(0, 140, 255) !important;
+}
+
+.custom-table-row-selected {
+  background: rgb(102, 0, 255) !important;
+  line-height: 2px;
+  color: black;
+}
+.custom-table-row-selected:hover {
+  background: rgb(102, 0, 255) !important;
+  line-height: 2px;
+  color: black;
+}
+
+.custom-table-row-blue {
+  background: blue !important;
+  line-height: 2px;
+  color: black;
+}
+.custom-table-row-blue:hover {
+  background: blue !important;
+  line-height: 2px;
+  color: black;
+}
+
+.custom-table-row-yellow {
+  background: yellow !important;
+  line-height: 2px;
+  color: black;
+}
+.custom-table-row-yellow:hover {
+  background: yellow !important;
+  line-height: 2px;
+  color: black;
+}
+
+.custom-table-row-orange {
+  background: orange !important;
+  line-height: 2px;
+  color: black;
+}
+.custom-table-row-orange:hover {
+  background: orange !important;
+  line-height: 2px;
+  color: black;
+}
+
+.custom-table-row-red {
+  background: red !important;
+  line-height: 2px;
+  color: black;
+}
+.custom-table-row-red:hover {
+  background: red !important;
+  line-height: 2px;
+  color: black;
+}
+
+.custom-table-row-green {
+  background: green !important;
+  line-height: 2px;
+  color: black;
+}
+.custom-table-row-green:hover {
+  background: green !important;
+  line-height: 2px;
+  color: black;
+}
+
+.custom-table-row-gray {
+  background: gray !important;
+  line-height: 2px;
+  color: black;
+}
+.custom-table-row-gray:hover {
+  background: gray !important;
+  line-height: 2px;
+  color: black;
+}

@@ -1,0 +1,77 @@
+.myswitch-tabs {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+}
+
+.myswitch-tabs .mynav {
+  margin: 3px;
+  padding: 0px;
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+}
+
+.myswitch-tabs .mynav-div-active {
+  display: flex;
+  border-radius: 3px;
+  padding: 3px 3px;
+  margin: 3px 2px;
+  min-width: 80px;
+  background-color: #458b74;
+  border-width: 1px;
+  border-style: solid solid solid solid;
+  border-color: #ddd;
+  justify-content: center;
+  align-items: center;
+}
+
+.myswitch-tabs .mynav-div {
+  display: flex;
+  border-radius: 3px;
+  padding: 3px 3px;
+  margin: 3px 2px;
+  min-width: 80px;
+  border-width: 1px;
+  border-style: solid solid solid solid;
+  border-color: #ddd;
+  justify-content: center;
+  align-items: center;
+}
+
+.myswitch-tabs .mynav-div-span {
+  flex: 1;
+  margin: 0px 6px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.myswitch-tabs .mynav-div-span:hover {
+  color: #495057;
+  text-decoration: none;
+}
+
+.myswitch-tabs .mynav-div-close {
+  cursor: pointer;
+}
+
+.myswitch-tabs .mynav-div-close:hover {
+  color: #495057;
+  text-decoration: none;
+}
+
+.myswitch-tabs .mycontent-active {
+  display: '';
+  flex: 1;
+  overflow: auto;
+}
+
+.myswitch-tabs .mycontent-hide {
+  display: none;
+  flex: 1;
+  overflow: auto;
+}

@@ -1,0 +1,10 @@
+.ant-table-tbody>tr>td {
+    padding: 15px ;
+    font-size: inherit !important;
+}
+
+/* 禁用.ant-table-thead>tr>th样式 */
+.ant-table-tbody>tr>th{
+    padding: 15px ;
+    font-size: inherit !important;
+}
