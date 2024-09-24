@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect, useRef, useImperativeHandle, forwardRef } from 'react'
 import { Button, Input, Space, Table, Pagination, Flex, Checkbox, Radio, message, Modal } from 'antd'
-import { getDBData, getDBDataByQuery, updateDBData, getRTData, updateRTData, getDBDataByCommd, updateRTDatart, sendYk } from "../../api"
+import { getDBData, getDBDataByQuery, updateDBData, getRTData, updateRTData, getDBDataByCommd, updateRTDatart } from "../../api"
 import { SysContext } from "../../../../components/Context"
 import PubSub from 'pubsub-js'
 
@@ -176,6 +176,8 @@ function CustomDataSetState({ orgdata, moduleData, itemid, itemkey }) {
       container.scrollTop = scrollPosRef.current
     }
   }
+
+
   const getData = (tablename, itemid) => {
     let sqlString
     let pd = []
@@ -282,6 +284,8 @@ function CustomDataSetState({ orgdata, moduleData, itemid, itemkey }) {
     setSearchedColumn('');
     searchInput.current.blur(); // close the search input
   };
+
+
   const handleRadioChange = (e) => {
     const selectedValue = e.target.value;
     setTableName(selectedValue);
@@ -321,11 +325,6 @@ function CustomDataSetState({ orgdata, moduleData, itemid, itemkey }) {
     setInputrtSimulateValue(record.rtSimulateValue);
     setInputrtQualityFlag(record.rtQualityFlag);
     setInputrtStateFlag(record.rtStateFlag);
-
-    //yk,ys
-    if (result === "ys" || result === "yk") {
-      setIsModalYks(true);//
-    }
   };
   const handleModalClose = () => {
     console.log("5");
@@ -334,13 +333,22 @@ function CustomDataSetState({ orgdata, moduleData, itemid, itemkey }) {
     setIsCheckedAnalogFlags(false);
     setIsCheckedWriteState(false);
   };
-  const [rtSimulateFlag, setRtSimulateFlag] = useState('1');//设置模拟标志的值
+  const [rtSimulateFlag, setRtSimulateFlag] = useState('1');
   const handleModalCloseOk = () => {
     console.log("50");
     setIsModalVisible(false);    // 点击设置
     setIsCheckedData(false);
     setIsCheckedAnalogFlags(false);
     setIsCheckedWriteState(false);
+    //更新数据到实时库
+    // updateRTDatart(
+    //   tableName,
+    //   {
+    //     "id": selectedRowData.id, "rtRawValue": inputrtRawValue, "rtNewValue": inputrtNewValue,
+    //     "rtUpdateTime": context.serverTime
+    //   },
+    //   context.clientUnique, context.serverTime);
+    // let rtSimulateFlag = 0;
     if (isCheckedAnalogFlags) {
       // rtSimulateFlag = 1;
       setRtSimulateFlag("1");
@@ -360,25 +368,15 @@ function CustomDataSetState({ orgdata, moduleData, itemid, itemkey }) {
       context.clientUnique, context.serverTime);
     //更新数据到数据库
     if (isCheckedData) {
-      updateDBData(tableName,
-        { "rtRawValue": inputrtRawValue, "rtNewValue": inputrtNewValue },
-        "id='" + selectedRowData.id + "'", context.clientUnique, context.serverTime)
+      updateDBData(tableName, { "rtRawValue": inputrtRawValue, "rtNewValue": inputrtNewValue }, "id='" + selectedRowData.id + "'", context.clientUnique, context.serverTime)
 
     }
-    if (isCheckedWriteState) {
-      updateDBData(tableName,
-        { "rtStateValue": inputrtStateValue, },
-        "id='" + selectedRowData.id + "'", context.clientUnique, context.serverTime)
-    }
-    if (isCheckedData && isCheckedWriteState) {
-      updateDBData(tableName,
-        { "rtRawValue": inputrtRawValue, "rtNewValue": inputrtNewValue, "rtStateValue": inputrtStateValue },
-        "id='" + selectedRowData.id + "'", context.clientUnique, context.serverTime)
-    }
   };
+
   const handlertRawValueChange = (e) => {
     setInputrtRawValue(e.target.value);
   }
+
   const handlertNewValueChange = (e) => {
     setInputrtNewValue(e.target.value);//更新输入框中的值
   }
@@ -405,63 +403,6 @@ function CustomDataSetState({ orgdata, moduleData, itemid, itemkey }) {
   const [isCheckedWriteState, setIsCheckedWriteState] = useState(false);
   const handleCheckedWriteState = (e) => {
     setIsCheckedWriteState(e.target.checked);
-  }
-  //
-
-  //设置yk,ys的弹窗
-  const [isModalyks, setIsModalYks] = useState(false)
-  const [choiceYsk, setChoiceYsk] = useState()
-  const [inputcommandID, setInputCommandID] = useState('')
-
-  // const [inputsrcID,setInputSrcID]=useState('')
-  const [inputrtCode, setInputRtCode] = useState('')
-  const [inputrtValue, setInputRtValue] = useState('')
-
-  const handleModalYksClose = () => {
-    setIsModalYks(false);
-    setInputRtCode('');
-    setInputRtValue('');
-
-  }
-  const handleRadioYskChange = (e) => {
-    setChoiceYsk(e.target.value);
-    setInputCommandID(e.target.value);
-
-  }
-  const handleModalYksCloseOk = () => {
-    sendYk(context.clientUnique, context.serverTime,
-      {
-        "id": selectedRowData.id, //ID
-        "commandID": inputcommandID, //命令ID，命令字段表中指定的命令类型
-        "srcType": "debug", //源类型，固定为debug
-        "srcID": context.clientUnique, //客户端ID
-        "operator": "root", //操作人
-        "monitor": "admin", //监护人
-        "isPublishEvent": "1", //是否作为事件发布
-        "rtCode": inputrtCode, //代表该命令的唯一编码，客户端生成
-        "rtValue": inputrtValue, //命令对应的值
-        "rtCommandTime": context.serverTime + '.000',
-      }
-      // {
-      //   "id": "dataset_camera_defense_L10/yk002", //ID
-      //   "commandID": "ZG_DC_YK_EXEC", //命令ID，命令字段表中指定的命令类型
-      //   "srcType": "debug", //源类型，固定为client
-      //   "srcID": context.clientUnique, //客户端ID
-      //   "operator": "root", //操作人
-      //   "monitor": "admin", //监护人
-      //   "isPublishEvent": "1", //是否作为事件发布
-      //   "rtCode": "e0267908-5926-48f2-b81b-dc66f451abd7", //代表该命令的唯一编码，客户端生成
-      //   "rtValue": "2", //命令对应的值
-      //   //  "rtCommandTime": "2024-09-24 14:05:40.000" //命令发送时间
-      //   "rtCommandTime": context.serverTime + '.000',
-      // }
-    )
-  }
-  const handleRtcodeChange = (e) => {
-    setInputRtCode(e.target.value);
-  }
-  const handleRtValueChange = (e) => {
-    setInputRtValue(e.target.value)
   }
   return (
 
@@ -508,6 +449,7 @@ function CustomDataSetState({ orgdata, moduleData, itemid, itemkey }) {
           </div>
         </div>
       </div>
+
       <Modal
         title={radioLabel}
         visible={isModalVisible}
@@ -518,276 +460,71 @@ function CustomDataSetState({ orgdata, moduleData, itemid, itemkey }) {
         okText="设置"// 点击确认关闭
       >
         {selectedRowData ? (
-          // <div>
-          //   <p><strong>ID:</strong> {selectedRowData.id}</p>
-          //   <p><strong>名称:</strong> {selectedRowData.name}</p>
-          //   <p><strong>原始值 :
-          //     <input
-          //       style={{ backgroundColor: '#bbbbbb' }}
-          //       value={inputrtRawValue}
-          //       onChange={handlertRawValueChange}></input>
-          //   </strong></p>
-
-          //   <p><strong>实时值 :
-          //     <input value={inputrtNewValue}
-          //       onChange={handlertNewValueChange}
-          //       style={{ backgroundColor: '#bbbbbb' }}
-          //     />
-          //     <Checkbox
-          //       checked={isCheckedData}
-          //       onChange={handleCheckDataChange}
-          //     >
-          //       写入数据库
-          //     </Checkbox>
-          //   </strong></p>
-
-          //   <p><strong>模拟值 :
-          //     <input
-          //       style={{ backgroundColor: '#bbbbbb' }}
-          //       value={inputrtSimulateValue}
-          //       onChange={handlertSimulateValueChange} />
-          //     <Checkbox
-          //       checked={isCheckedAnalogFlags}
-          //       onChange={handleCheckAnalogFlags} >模拟标志</Checkbox>
-          //   </strong>
-          //   </p>
-
-          //   <p><strong>   品     质    :
-          //     <input
-          //       style={{ backgroundColor: '#bbbbbb' }}
-          //       value={inputrtQualityFlag}
-          //       onChange={handlertQualityFlagChange} />
-
-          //   </strong></p>
-          //   <p><strong>状态标记:
-          //     <input
-          //       style={{ backgroundColor: '#bbbbbb' }}
-          //       value={inputrtStateFlag}
-          //       onChange={handlertStateFlagChange} />
-          //   </strong></p>
-
-          //   <p>
-          //     <strong>
-          //       状态值    :
-          //       <input value={inputrtStateValue}
-          //         onChange={handlertStateValueChange}
-          //         style={{ backgroundColor: '#bbbbbb' }}
-          //       />
-          //       <Checkbox
-          //         checked={isCheckedWriteState}
-          //         onChange={handleCheckedWriteState}>是否写入状态值</Checkbox>
-          //     </strong>
-          //   </p>
-          // </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-            <div style={{ display: 'flex', alignItems: 'center' }}>
-              <p style={{ width: '150px', margin: '0' }}><strong>ID:</strong></p>
-              <p style={{ margin: '0' }}>{selectedRowData.id}</p>
-            </div>
-
-            <div style={{ display: 'flex', alignItems: 'center' }}>
-              <p style={{ width: '150px', margin: '0' }}><strong>名称:</strong></p>
-              <p style={{ margin: '0' }}>{selectedRowData.name}</p>
-            </div>
-
-            <div style={{ display: 'flex', alignItems: 'center' }}>
-              <p style={{ width: '150px', margin: '0' }}><strong>原始值:</strong></p>
+          <div>
+            <p><strong>ID:</strong> {selectedRowData.id}</p>
+            <p><strong>名称:</strong> {selectedRowData.name}</p>
+            <p><strong>原始值 :
               <input
-                style={{ backgroundColor: '#bbbbbb', margin: '0' }}
+                style={{ backgroundColor: '#bbbbbb' }}
                 value={inputrtRawValue}
-                onChange={handlertRawValueChange}
-              />
-            </div>
+                onChange={handlertRawValueChange}></input>
+            </strong></p>
 
-            <div style={{ display: 'flex', alignItems: 'center' }}>
-              <p style={{ width: '150px', margin: '0' }}><strong>实时值:</strong></p>
-              <input
-                value={inputrtNewValue}
+            <p><strong>实时值 :
+              <input value={inputrtNewValue}
                 onChange={handlertNewValueChange}
-                style={{ backgroundColor: '#bbbbbb', margin: '0' }}
+                style={{ backgroundColor: '#bbbbbb' }}
               />
               <Checkbox
                 checked={isCheckedData}
                 onChange={handleCheckDataChange}
-                style={{ marginLeft: '10px' }}
               >
                 写入数据库
               </Checkbox>
-            </div>
+            </strong></p>
 
-            <div style={{ display: 'flex', alignItems: 'center' }}>
-              <p style={{ width: '150px', margin: '0' }}><strong>模拟值:</strong></p>
+            <p><strong>模拟值 :
               <input
-                style={{ backgroundColor: '#bbbbbb', margin: '0' }}
+                style={{ backgroundColor: '#bbbbbb' }}
                 value={inputrtSimulateValue}
-                onChange={handlertSimulateValueChange}
-              />
+                onChange={handlertSimulateValueChange} />
               <Checkbox
                 checked={isCheckedAnalogFlags}
-                onChange={handleCheckAnalogFlags}
-                style={{ marginLeft: '10px' }}
-              >
-                模拟标志
-              </Checkbox>
-            </div>
-
-            <div style={{ display: 'flex', alignItems: 'center' }}>
-              <p style={{ width: '150px', margin: '0' }}><strong>品质:</strong></p>
-              <input
-                style={{ backgroundColor: '#bbbbbb', margin: '0' }}
-                value={inputrtQualityFlag}
-                onChange={handlertQualityFlagChange}
-              />
-            </div>
-
-            <div style={{ display: 'flex', alignItems: 'center' }}>
-              <p style={{ width: '150px', margin: '0' }}><strong>状态标记:</strong></p>
-              <input
-                style={{ backgroundColor: '#bbbbbb', margin: '0' }}
-                value={inputrtStateFlag}
-                onChange={handlertStateFlagChange}
-              />
-            </div>
-
-            <div style={{ display: 'flex', alignItems: 'center' }}>
-              <p style={{ width: '150px', margin: '0' }}><strong>状态值:</strong></p>
-              <input
-                value={inputrtStateValue}
-                onChange={handlertStateValueChange}
-                style={{ backgroundColor: '#bbbbbb', margin: '0' }}
-              />
-              <Checkbox
-                checked={isCheckedWriteState}
-                onChange={handleCheckedWriteState}
-                style={{ marginLeft: '10px' }}
-              >
-                是否写入状态值
-              </Checkbox>
-            </div>
-          </div>
-
-        ) : (
-          <p>无数据</p>
-        )}
-      </Modal>
-
-
-      <Modal
-        title={radioLabel}
-        visible={isModalyks}
-        onCancel={handleModalYksClose}
-        cancelText="关闭"
-
-        onOk={handleModalYksCloseOk}
-        okText="设置"// 点击确认关闭
-      >
-        {selectedRowData ? (
-
-          <div>
-
-            {/* <p><strong>ID:</strong> {selectedRowData.id}</p>
-            <p><strong>commandID:
-              <input style={{ backgroundColor: '#bbbbbb', width: '300px' }}
-                value={inputcommandID}>
-              </input></strong></p>
-
-            <p><strong>srcType :
-              <input
-                style={{ backgroundColor: '#bbbbbb' }}
-                value="debug"
-              ></input>
-            </strong></p>
-            <p><strong>srcID :
-              <input value={context.clientUnique}
-                style={{ backgroundColor: '#bbbbbb', width: '300px' }}
-              />
-            </strong></p>
-            <p><strong>rtCode:
-              <input
-                style={{ backgroundColor: '#bbbbbb' }}
-                value={inputrtCode}
-                onChange={handleRtcodeChange}
-              />
+                onChange={handleCheckAnalogFlags} >模拟标志</Checkbox>
             </strong>
             </p>
-            <p><strong>rtValue:
+
+            <p><strong>   品     质    :
               <input
                 style={{ backgroundColor: '#bbbbbb' }}
-                value={inputrtValue}
-                onChange={handleRtValueChange}
-              />
-            </strong></p> */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-              <div style={{ display: 'flex', alignItems: 'center' }}>
-                <p style={{ width: '150px', margin: '0' }}><strong>ID:</strong></p>
-                <p style={{ margin: '0' }}>{selectedRowData.id}</p>
-              </div>
+                value={inputrtQualityFlag}
+                onChange={handlertQualityFlagChange} />
 
-              <div style={{ display: 'flex', alignItems: 'center' }}>
-                <p style={{ width: '150px', margin: '0' }}><strong>commandID:</strong></p>
-                <input
-                  style={{ backgroundColor: '#bbbbbb', width: '300px', margin: '0' }}
-                  value={inputcommandID}
+            </strong></p>
+            <p><strong>状态标记:
+              <input
+                style={{ backgroundColor: '#bbbbbb' }}
+                value={inputrtStateFlag}
+                onChange={handlertStateFlagChange} />
+            </strong></p>
+
+            <p>
+              <strong>
+                状态值    :
+                <input value={inputrtStateValue}
+                  onChange={handlertStateValueChange}
+                  style={{ backgroundColor: '#bbbbbb' }}
                 />
-              </div>
-
-              <div style={{ display: 'flex', alignItems: 'center' }}>
-                <p style={{ width: '150px', margin: '0' }}><strong>srcType:</strong></p>
-                <input
-                  style={{ backgroundColor: '#bbbbbb', margin: '0', width: '300px' }}
-                  value="debug"
-                />
-              </div>
-
-              <div style={{ display: 'flex', alignItems: 'center' }}>
-                <p style={{ width: '150px', margin: '0' }}><strong>srcID:</strong></p>
-                <input
-                  style={{ backgroundColor: '#bbbbbb', width: '300px', margin: '0' }}
-                  value={context.clientUnique}
-                />
-              </div>
-
-              <div style={{ display: 'flex', alignItems: 'center' }}>
-                <p style={{ width: '150px', margin: '0' }}><strong>rtCode:</strong></p>
-                <input
-                  style={{ backgroundColor: '#bbbbbb', margin: '0', width: '300px', }}
-                  value={inputrtCode}
-                  onChange={handleRtcodeChange}
-                />
-              </div>
-
-              <div style={{ display: 'flex', alignItems: 'center' }}>
-                <p style={{ width: '150px', margin: '0' }}><strong>rtValue:</strong></p>
-                <input
-                  style={{ backgroundColor: '#bbbbbb', margin: '0', width: '300px', }}
-                  value={inputrtValue}
-                  onChange={handleRtValueChange}
-                />
-              </div>
-            </div>
-
-
-
-
-            <Radio.Group
-              onChange={handleRadioYskChange}
-              value={choiceYsk}>
-              <Radio value={"ZG_DC_YK_SELECT"} >选择</Radio>
-              <Radio value={"ZG_DC_YK_EXEC"}>执行</Radio>
-              <Radio value={"ZG_DC_YK_CANCLE"}>取消</Radio>
-              <br></br>
-              <Radio value={"ZG_DC_YK_SELECT_RESP"}>选择确认</Radio>
-              <Radio value={"ZG_DC_YK_EXEC_RESP"}>执行确认</Radio>
-              <Radio value={"ZG_DC_YK_CANCLE_RESP"}>取消确认</Radio>
-            </Radio.Group>
-
-
+                <Checkbox
+                  checked={isCheckedWriteState}
+                  onChange={handleCheckedWriteState}>是否写入状态值</Checkbox>
+              </strong>
+            </p>
           </div>
         ) : (
           <p>无数据</p>
         )}
       </Modal>
-
     </div>
   )
 }

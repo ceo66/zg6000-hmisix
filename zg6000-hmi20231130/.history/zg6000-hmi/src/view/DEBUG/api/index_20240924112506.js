@@ -73,7 +73,7 @@ function updateRTDatart(dbName, data, clientID, time) {
 }
 
 //发送遥控命令
-function sendYk(clientID, time, data) {
+function sendYk(dbName, data, clientID, time) {
 	return new Promise((resolve, reject) => {
 		constFn.postRequestAJAX(
 			`/api/app/mp/yk`,
@@ -195,4 +195,4 @@ function getDBDataByCommd(commd, query, clientID, time) {
 
 
 
-export { getDBData, updateDBData, getDBDataByQuery, getRTData, updateRTData, getDBDataByCommd, updateRTDatart, sendYk }
+export { getDBData, updateDBData, getDBDataByQuery, getRTData, updateRTData, getDBDataByCommd, updateRTDatart }

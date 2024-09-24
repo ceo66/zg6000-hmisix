@@ -72,31 +72,6 @@ function updateRTDatart(dbName, data, clientID, time) {
 	})
 }
 
-//发送遥控命令
-function sendYk(clientID, time, data) {
-	return new Promise((resolve, reject) => {
-		constFn.postRequestAJAX(
-			`/api/app/mp/yk`,
-			{
-				params: [
-					data
-				], // 直接传递 data
-
-				clientID: clientID,
-				time: time,
-			},
-			(backJson, result) => {
-				if (result) {
-					resolve(backJson) // 解决Promise并传递返回的数据
-				} else {
-					reject(new Error("请求失败")) // 拒绝Promise并传递错误
-				}
-			}
-		)
-	})
-}
-
-
 
 
 
@@ -195,4 +170,4 @@ function getDBDataByCommd(commd, query, clientID, time) {
 
 
 
-export { getDBData, updateDBData, getDBDataByQuery, getRTData, updateRTData, getDBDataByCommd, updateRTDatart, sendYk }
+export { getDBData, updateDBData, getDBDataByQuery, getRTData, updateRTData, getDBDataByCommd, updateRTDatart }

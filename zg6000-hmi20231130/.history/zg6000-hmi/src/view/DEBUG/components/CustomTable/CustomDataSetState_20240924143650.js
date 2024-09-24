@@ -579,7 +579,7 @@ function CustomDataSetState({ orgdata, moduleData, itemid, itemkey }) {
           //     </strong>
           //   </p>
           // </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
             <div style={{ display: 'flex', alignItems: 'center' }}>
               <p style={{ width: '150px', margin: '0' }}><strong>ID:</strong></p>
               <p style={{ margin: '0' }}>{selectedRowData.id}</p>

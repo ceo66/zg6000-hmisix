@@ -519,7 +519,7 @@ const columnsCfgDataSet = [
         title: '命令时间',
         dataIndex: 'rtCommandTime',
         isRTField: true,
-        width: 200
+        width: 150
       },
       {
         title: '更新时间',
