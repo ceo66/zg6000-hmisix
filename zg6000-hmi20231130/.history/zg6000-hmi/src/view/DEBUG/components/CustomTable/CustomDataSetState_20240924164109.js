@@ -699,6 +699,39 @@ function CustomDataSetState({ orgdata, moduleData, itemid, itemkey }) {
         {selectedRowData ? (
 
           <div>
+
+            {/* <p><strong>ID:</strong> {selectedRowData.id}</p>
+            <p><strong>commandID:
+              <input style={{ backgroundColor: '#bbbbbb', width: '300px' }}
+                value={inputcommandID}>
+              </input></strong></p>
+
+            <p><strong>srcType :
+              <input
+                style={{ backgroundColor: '#bbbbbb' }}
+                value="debug"
+              ></input>
+            </strong></p>
+            <p><strong>srcID :
+              <input value={context.clientUnique}
+                style={{ backgroundColor: '#bbbbbb', width: '300px' }}
+              />
+            </strong></p>
+            <p><strong>rtCode:
+              <input
+                style={{ backgroundColor: '#bbbbbb' }}
+                value={inputrtCode}
+                onChange={handleRtcodeChange}
+              />
+            </strong>
+            </p>
+            <p><strong>rtValue:
+              <input
+                style={{ backgroundColor: '#bbbbbb' }}
+                value={inputrtValue}
+                onChange={handleRtValueChange}
+              />
+            </strong></p> */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
               <div style={{ display: 'flex', alignItems: 'center' }}>
                 <p style={{ width: '150px', margin: '0' }}><strong>ID:</strong></p>
@@ -762,6 +795,8 @@ function CustomDataSetState({ orgdata, moduleData, itemid, itemkey }) {
               <Radio value={"ZG_DC_YK_EXEC_RESP"}>执行确认</Radio>
               <Radio value={"ZG_DC_YK_CANCLE_RESP"}>取消确认</Radio>
             </Radio.Group> */}
+
+
             <Radio.Group
               onChange={handleRadioYskChange}
               value={choiceYsk}

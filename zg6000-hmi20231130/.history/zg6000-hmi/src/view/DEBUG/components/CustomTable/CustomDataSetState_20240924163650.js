@@ -446,6 +446,20 @@ function CustomDataSetState({ orgdata, moduleData, itemid, itemkey }) {
           "rtValue": inputrtValue, //命令对应的值
           "rtCommandTime": context.serverTime + '.000',
         }
+
+        // {
+        //   "id": "dataset_camera_defense_L10/yk002", //ID
+        //   "commandID": "ZG_DC_YK_EXEC", //命令ID，命令字段表中指定的命令类型
+        //   "srcType": "debug", //源类型，固定为client
+        //   "srcID": context.clientUnique, //客户端ID
+        //   "operator": "root", //操作人
+        //   "monitor": "admin", //监护人
+        //   "isPublishEvent": "1", //是否作为事件发布
+        //   "rtCode": "e0267908-5926-48f2-b81b-dc66f451abd7", //代表该命令的唯一编码，客户端生成
+        //   "rtValue": "2", //命令对应的值
+        //   //  "rtCommandTime": "2024-09-24 14:05:40.000" //命令发送时间
+        //   "rtCommandTime": context.serverTime + '.000',
+        // }
       )
     }
     else {
@@ -462,6 +476,20 @@ function CustomDataSetState({ orgdata, moduleData, itemid, itemkey }) {
           "rtValue": inputrtValue, //命令对应的值
           "rtCommandTime": context.serverTime + '.000',
         }
+
+        // {
+        //   "id": "dataset_camera_defense_L10/yk002", //ID
+        //   "commandID": "ZG_DC_YK_EXEC", //命令ID，命令字段表中指定的命令类型
+        //   "srcType": "debug", //源类型，固定为client
+        //   "srcID": context.clientUnique, //客户端ID
+        //   "operator": "root", //操作人
+        //   "monitor": "admin", //监护人
+        //   "isPublishEvent": "1", //是否作为事件发布
+        //   "rtCode": "e0267908-5926-48f2-b81b-dc66f451abd7", //代表该命令的唯一编码，客户端生成
+        //   "rtValue": "2", //命令对应的值
+        //   //  "rtCommandTime": "2024-09-24 14:05:40.000" //命令发送时间
+        //   "rtCommandTime": context.serverTime + '.000',
+        // }
       )
 
     }
@@ -473,11 +501,40 @@ function CustomDataSetState({ orgdata, moduleData, itemid, itemkey }) {
   const handleRtValueChange = (e) => {
     setInputRtValue(e.target.value)
   }
+  const renderRadioOptions = () => {
+    const resultth = tableName.substring(tableName.lastIndexOf('_') + 1);
+    console.log("22", resultth);
+    if (resultth === 'YK') {
+      return (
+        <>
+          <Radio value={"ZG_DC_YK_SELECT"}>选择</Radio>
+          <Radio value={"ZG_DC_YK_EXEC"}>执行</Radio>
+          <Radio value={"ZG_DC_YK_CANCLE"}>取消</Radio>
+          <br />
+          <Radio value={"ZG_DC_YK_SELECT_RESP"}>选择确认</Radio>
+          <Radio value={"ZG_DC_YK_EXEC_RESP"}>执行确认</Radio>
+          <Radio value={"ZG_DC_YK_CANCLE_RESP"}>取消确认</Radio>
+        </>
+      );
+    } else if (resultth === 'YS') {
+      return (
+        <>
+          <Radio value={"ZG_DC_YS_SELECT"}>选择</Radio>
+          <Radio value={"ZG_DC_YS_EXEC"}>执行</Radio>
+          <Radio value={"ZG_DC_YS_CANCLE"}>取消</Radio>
+          <br />
+          <Radio value={"ZG_DC_YS_SELECT_RESP"}>选择确认</Radio>
+          <Radio value={"ZG_DC_YS_EXEC_RESP"}>执行确认</Radio>
+          <Radio value={"ZG_DC_YS_CANCLE_RESP"}>取消确认</Radio>
+        </>
+      );
+    }
+  };
+  console.log("tableName:", tableName);
 
-  //选择进行YK,还是YS
   const suffix = tableName.substring(tableName.lastIndexOf('_') + 1).toUpperCase();
   const prefix = suffix === 'YK' ? 'ZG_DC_YK' : 'ZG_DC_YS';
-
+  console.log("5", prefix);
   return (
 
     <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
@@ -699,6 +756,39 @@ function CustomDataSetState({ orgdata, moduleData, itemid, itemkey }) {
         {selectedRowData ? (
 
           <div>
+
+            {/* <p><strong>ID:</strong> {selectedRowData.id}</p>
+            <p><strong>commandID:
+              <input style={{ backgroundColor: '#bbbbbb', width: '300px' }}
+                value={inputcommandID}>
+              </input></strong></p>
+
+            <p><strong>srcType :
+              <input
+                style={{ backgroundColor: '#bbbbbb' }}
+                value="debug"
+              ></input>
+            </strong></p>
+            <p><strong>srcID :
+              <input value={context.clientUnique}
+                style={{ backgroundColor: '#bbbbbb', width: '300px' }}
+              />
+            </strong></p>
+            <p><strong>rtCode:
+              <input
+                style={{ backgroundColor: '#bbbbbb' }}
+                value={inputrtCode}
+                onChange={handleRtcodeChange}
+              />
+            </strong>
+            </p>
+            <p><strong>rtValue:
+              <input
+                style={{ backgroundColor: '#bbbbbb' }}
+                value={inputrtValue}
+                onChange={handleRtValueChange}
+              />
+            </strong></p> */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
               <div style={{ display: 'flex', alignItems: 'center' }}>
                 <p style={{ width: '150px', margin: '0' }}><strong>ID:</strong></p>
@@ -762,6 +852,8 @@ function CustomDataSetState({ orgdata, moduleData, itemid, itemkey }) {
               <Radio value={"ZG_DC_YK_EXEC_RESP"}>执行确认</Radio>
               <Radio value={"ZG_DC_YK_CANCLE_RESP"}>取消确认</Radio>
             </Radio.Group> */}
+
+
             <Radio.Group
               onChange={handleRadioYskChange}
               value={choiceYsk}
