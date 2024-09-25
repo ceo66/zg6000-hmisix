@@ -445,9 +445,7 @@ function DoApp(moduleData) {
           type="primary">
           订阅</Button>
 
-        <Button onClick={handleUnsubscribe}
-          style={{ backgroundColor: 'red', color: 'white' }}>
-          取消订阅</Button>
+        <Button onClick={handleUnsubscribe}>取消订阅</Button>
         {/* 订阅弹窗 */}
         <Modal
           title="订阅主题"

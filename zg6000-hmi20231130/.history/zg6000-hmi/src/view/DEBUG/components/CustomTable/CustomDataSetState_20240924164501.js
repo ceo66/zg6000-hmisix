@@ -419,7 +419,6 @@ function CustomDataSetState({ orgdata, moduleData, itemid, itemkey }) {
 
   const handleModalYksClose = () => {
     setIsModalYks(false);
-    setChoiceYsk('');
     setInputCommandID('');
     setInputRtCode('');
     setInputRtValue('');
@@ -748,6 +747,21 @@ function CustomDataSetState({ orgdata, moduleData, itemid, itemkey }) {
                 />
               </div>
             </div>
+
+
+
+
+            {/* <Radio.Group
+              onChange={handleRadioYskChange}
+              value={choiceYsk}>
+              <Radio value={"ZG_DC_YK_SELECT"} >选择</Radio>
+              <Radio value={"ZG_DC_YK_EXEC"}>执行</Radio>
+              <Radio value={"ZG_DC_YK_CANCLE"}>取消</Radio>
+              <br></br>
+              <Radio value={"ZG_DC_YK_SELECT_RESP"}>选择确认</Radio>
+              <Radio value={"ZG_DC_YK_EXEC_RESP"}>执行确认</Radio>
+              <Radio value={"ZG_DC_YK_CANCLE_RESP"}>取消确认</Radio>
+            </Radio.Group> */}
             <Radio.Group
               onChange={handleRadioYskChange}
               value={choiceYsk}

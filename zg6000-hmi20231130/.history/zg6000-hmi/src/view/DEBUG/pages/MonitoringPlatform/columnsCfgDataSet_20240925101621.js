@@ -576,7 +576,7 @@ const columnsCfgDataSet = [
         title: '所属设备ID',
         dataIndex: 'deviceID',
         isRTField: false,
-        width: 190
+        width: 150
       },
       {
         title: '表达式ID',

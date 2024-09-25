@@ -441,13 +441,8 @@ function DoApp(moduleData) {
 
       <div className={styles["grid-item"]}>
         <Button
-          onClick={handleSubscribe}
-          type="primary">
-          订阅</Button>
-
-        <Button onClick={handleUnsubscribe}
-          style={{ backgroundColor: 'red', color: 'white' }}>
-          取消订阅</Button>
+          onClick={handleSubscribe}>订阅</Button>
+        <Button onClick={handleUnsubscribe}>取消订阅</Button>
         {/* 订阅弹窗 */}
         <Modal
           title="订阅主题"

@@ -552,7 +552,7 @@ const columnsCfgDataSet = [
         title: '数据集ID',
         dataIndex: 'datasetID',
         isRTField: false,
-        width: 190
+        width: 150
       },
       {
         title: '模型数据ID',
@@ -576,7 +576,7 @@ const columnsCfgDataSet = [
         title: '所属设备ID',
         dataIndex: 'deviceID',
         isRTField: false,
-        width: 190
+        width: 150
       },
       {
         title: '表达式ID',
