@@ -216,11 +216,29 @@ export default class SwitchTabs extends Component {
                                             </div>
                                         )
                                     }
-                                    else {
-                                        return
+                                    // else {
+                                    //     return
+                                    // }
+
+                                    if (this.state.tabItems[key] === '1.2') {
+                                        return (
+                                            <div onClick={() => {
+                                                this.toggleTab(key)
+                                            }}
+                                                className={this.state.activeKey === key ? 'mynav-div-active' : 'mynav-div'}
+                                                key={this.state.tabItems[key].key}>
+                                                <span className='mynav-div-span'>MQ调试</span>
+
+                                                {this.state.tabItems[key].closable ?
+                                                    <CloseOutlined className='mynav-div-close'
+                                                        onClick={(e) => {
+                                                            this.closeTab(key)
+                                                            e.stopPropagation()
+                                                        }} />
+                                                    : null}
+                                            </div>
+                                        )
                                     }
-
-
 
                                 })
                             }

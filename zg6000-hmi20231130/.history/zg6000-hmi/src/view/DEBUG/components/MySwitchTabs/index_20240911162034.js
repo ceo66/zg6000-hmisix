@@ -219,9 +219,6 @@ export default class SwitchTabs extends Component {
                                     else {
                                         return
                                     }
-
-
-
                                 })
                             }
                         </nav>

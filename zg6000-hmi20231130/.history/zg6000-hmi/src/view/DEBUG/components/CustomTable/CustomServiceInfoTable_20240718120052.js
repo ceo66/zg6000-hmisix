@@ -20,7 +20,7 @@ const CustomServiceInfoTable = forwardRef(({ orgdata, moduleData, mqttObj, colum
   const context = useContext(SysContext)
   const [pageTotal, setPageTotal] = useState(0)
   const [currentPage, setCurrentPage] = useState(1)
-  const [pageSize, setPageSize] = useState(10000)
+  const [pageSize, setPageSize] = useState(10000) 
   const [tableData, setData] = useState([])//我该
   const comState = useRef(true)
   const searchValue = useRef("")
@@ -55,11 +55,11 @@ const CustomServiceInfoTable = forwardRef(({ orgdata, moduleData, mqttObj, colum
     return arrDataBak.current
   }
 
-  function isTimerStopped() {
+  function isTimerStopped () {
     return typeof timerRef.current === 'undefined'
   }
 
-  function StoppedHeart() {
+  function StoppedHeart () {
     if (isTimerStopped() != true) {
       clearInterval(timerRef.current)
     }
@@ -212,7 +212,7 @@ const CustomServiceInfoTable = forwardRef(({ orgdata, moduleData, mqttObj, colum
     context.subscribe(moduleData, mqttObj.type, mqttObj.topics)
     const mqttPubSub = PubSub.subscribe(moduleData, (msg, data) => {
       let { type, content } = data
-      //  console.log('debug', data)
+      // console.log('debug', data)
 
       if (type === mqttObj.type) {
 

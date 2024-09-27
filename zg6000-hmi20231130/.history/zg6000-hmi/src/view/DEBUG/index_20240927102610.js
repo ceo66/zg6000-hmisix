@@ -317,8 +317,7 @@ export default function DEBUG() {
     const refSwitchTabs = useRef()
     //const [serviceInstanceState, setServiceInstanceState] = useState([])
     const treeRef = useRef(null)
-    let maxTabItemsCount = 6
-
+    let maxTabItemsCount = 4
 
     const [defaultData, setDefaultData] = useState(switchTabsItems['0.1'].children)
 
@@ -343,7 +342,7 @@ export default function DEBUG() {
                         inlineCollapsed={inlineCollapsed}
                         items={menuItems}
                         onClick={(item) => {
-                            refSwitchTabs.current.clear()
+                            //    refSwitchTabs.current.clear()
                             //       treeRef.current.clearSearchValue()
                             //setDefaultData(switchTabsItems['0.1'].children)
                             //setTreeCloseKeyState("")
@@ -395,7 +394,6 @@ export default function DEBUG() {
                                         for (let i in res.data) {
                                             if (arrInstanceID !== res.data[i].id) {
                                                 arrInstanceID = res.data[i].id
-
                                                 object = {}
                                                 secondIndex = 0
                                                 thirdIndex = 0
@@ -409,16 +407,12 @@ export default function DEBUG() {
                                                 objChildren.closable = true
                                                 objChildren.bDoubleClickFlag = true
                                                 let objectState = {}
-
                                                 objectState.id = res.data[i].serviceInstanceID
                                                 objectState.index = i
                                                 arrServiceDebug.push(objectState)
-                                                //   if (objectState.id) {
                                                 objChildren.childrenTab = <ServiceDebugPage key={objChildren.title} orgdata={'sp_param_node'} moduleData={constVar.module.ZG_MD_DEBUG} serviceInstanceID={objChildren.title} />
-
                                                 object.children.push(objChildren)
-
-                                                console.log(i, arrInstanceID, objectState.id, objChildren.title);
+                                                console.log();
                                                 if (objChildren) {
                                                     setShowCustomMenu(true)
                                                 }
@@ -426,7 +420,6 @@ export default function DEBUG() {
 
                                                 arrData.push(object)
                                                 fristIndex++
-
                                                 //break
                                             } else {
                                                 secondIndex++
@@ -439,7 +432,6 @@ export default function DEBUG() {
                                                 objectState.id = res.data[i].serviceInstanceID
                                                 objectState.index = i
                                                 arrServiceDebug.push(objectState)
-                                                console.log("69", objChildren.title);
                                                 objChildren.childrenTab = <ServiceDebugPage key={objChildren.title} orgdata={'sp_param_node'} moduleData={constVar.module.ZG_MD_DEBUG} serviceInstanceID={objChildren.title} />
                                                 object.children.push(objChildren)
                                                 thirdIndex++
@@ -603,7 +595,6 @@ export default function DEBUG() {
 
                                         if (tabCount >= maxTabItemsCount) {
                                             alert("标签数量超过最大数：" + maxTabItemsCount + "个")
-
                                             return
                                         }
                                     }
@@ -652,9 +643,7 @@ export default function DEBUG() {
                                     } else {
 
                                         if (tabCount >= maxTabItemsCount) {
-
                                             alert("标签数量超过最大数：" + maxTabItemsCount + "个")
-
                                             return
                                         }
                                     }

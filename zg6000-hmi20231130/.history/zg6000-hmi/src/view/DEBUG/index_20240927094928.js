@@ -317,8 +317,7 @@ export default function DEBUG() {
     const refSwitchTabs = useRef()
     //const [serviceInstanceState, setServiceInstanceState] = useState([])
     const treeRef = useRef(null)
-    let maxTabItemsCount = 6
-
+    let maxTabItemsCount = 4
 
     const [defaultData, setDefaultData] = useState(switchTabsItems['0.1'].children)
 
@@ -355,7 +354,6 @@ export default function DEBUG() {
                             }
                             let switchTabsItem = switchTabsItems[item.key]
                             setShowCustomMenu(switchTabsItem.children && switchTabsItem.children.length)
-                            console.log("5694", showCustomMenu);
 
                             if (switchTabsItem && switchTabsItem.children) {
                                 setDefaultData(switchTabsItem.children)
@@ -366,7 +364,7 @@ export default function DEBUG() {
 
                             if (switchTabsItem.key === "1.2") {
                                 console.log("9023", switchTabsItem.label);
-
+                                console.log("5694", showCustomMenu);
                                 refSwitchTabs.current.add(
                                     switchTabsItem.key,
                                     switchTabsItem.title,
@@ -376,7 +374,6 @@ export default function DEBUG() {
                                 //     console.log("1", switchTabsItem.key, switchTabsItem.title);
                                 setMenuDefault(switchTabsItem.key)
                             }
-                            console.log("80", switchTabsItem);
                             if (switchTabsItem && (switchTabsItem.key === "1.1")) {//服务调试
                                 let sqlString = "select A.id,A.name,B.id as serviceInstanceID from sp_param_node_service as A left join sp_param_node_service_instance as B on A.id=B.serviceID ORDER BY A.id"
 
@@ -395,7 +392,6 @@ export default function DEBUG() {
                                         for (let i in res.data) {
                                             if (arrInstanceID !== res.data[i].id) {
                                                 arrInstanceID = res.data[i].id
-
                                                 object = {}
                                                 secondIndex = 0
                                                 thirdIndex = 0
@@ -409,16 +405,12 @@ export default function DEBUG() {
                                                 objChildren.closable = true
                                                 objChildren.bDoubleClickFlag = true
                                                 let objectState = {}
-
                                                 objectState.id = res.data[i].serviceInstanceID
                                                 objectState.index = i
                                                 arrServiceDebug.push(objectState)
-                                                //   if (objectState.id) {
                                                 objChildren.childrenTab = <ServiceDebugPage key={objChildren.title} orgdata={'sp_param_node'} moduleData={constVar.module.ZG_MD_DEBUG} serviceInstanceID={objChildren.title} />
-
                                                 object.children.push(objChildren)
-
-                                                console.log(i, arrInstanceID, objectState.id, objChildren.title);
+                                                console.log();
                                                 if (objChildren) {
                                                     setShowCustomMenu(true)
                                                 }
@@ -426,7 +418,6 @@ export default function DEBUG() {
 
                                                 arrData.push(object)
                                                 fristIndex++
-
                                                 //break
                                             } else {
                                                 secondIndex++
@@ -439,7 +430,6 @@ export default function DEBUG() {
                                                 objectState.id = res.data[i].serviceInstanceID
                                                 objectState.index = i
                                                 arrServiceDebug.push(objectState)
-                                                console.log("69", objChildren.title);
                                                 objChildren.childrenTab = <ServiceDebugPage key={objChildren.title} orgdata={'sp_param_node'} moduleData={constVar.module.ZG_MD_DEBUG} serviceInstanceID={objChildren.title} />
                                                 object.children.push(objChildren)
                                                 thirdIndex++
@@ -599,15 +589,20 @@ export default function DEBUG() {
                                     if (refSwitchTabs.current.isFind(newExpandedKeys.key) === true) {
                                         setMenuDefault(newExpandedKeys.key)
                                     } else {
-
-
                                         if (tabCount >= maxTabItemsCount) {
                                             alert("标签数量超过最大数：" + maxTabItemsCount + "个")
-
                                             return
                                         }
                                     }
 
+
+
+
+
+                                    //newExpandedKeys.childrenTab.fatherState = setServiceInstanceState
+
+
+                                    //infoRef.current = {}
                                 }
                             }}
 
@@ -650,11 +645,8 @@ export default function DEBUG() {
                                     if (refSwitchTabs.current.isFind(newExpandedKeys.key) === true) {
                                         setMenuDefault(newExpandedKeys.key)
                                     } else {
-
                                         if (tabCount >= maxTabItemsCount) {
-
                                             alert("标签数量超过最大数：" + maxTabItemsCount + "个")
-
                                             return
                                         }
                                     }
@@ -685,6 +677,17 @@ export default function DEBUG() {
 
 
                         }}
+
+                        // tabItems={showCustomMenu ? {
+                        //     "0-0-0": {
+                        //         key: "1.2",
+                        //         label: "试试节点状态",
+                        //         closable: true,
+                        //         //   children: <DoApp orgdata={''} moduleData={constVar.module.ZG_MD_DEBUG} />,
+                        //         children: <SystemNodeStatePage orgdata={'sp_param_node'} moduleData={constVar.module.ZG_MD_DEBUG} />,
+                        //         isShow: true,
+                        //     }
+                        // } : {}}
 
 
                         isHideBar={false}

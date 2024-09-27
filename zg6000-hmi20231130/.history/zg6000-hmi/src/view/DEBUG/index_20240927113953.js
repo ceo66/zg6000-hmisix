@@ -413,11 +413,11 @@ export default function DEBUG() {
                                                 objectState.id = res.data[i].serviceInstanceID
                                                 objectState.index = i
                                                 arrServiceDebug.push(objectState)
-                                                //   if (objectState.id) {
-                                                objChildren.childrenTab = <ServiceDebugPage key={objChildren.title} orgdata={'sp_param_node'} moduleData={constVar.module.ZG_MD_DEBUG} serviceInstanceID={objChildren.title} />
+                                                if (objectState.id) {
+                                                    objChildren.childrenTab = <ServiceDebugPage key={objChildren.title} orgdata={'sp_param_node'} moduleData={constVar.module.ZG_MD_DEBUG} serviceInstanceID={objChildren.title} />
 
-                                                object.children.push(objChildren)
-
+                                                    object.children.push(objChildren)
+                                                }
                                                 console.log(i, arrInstanceID, objectState.id, objChildren.title);
                                                 if (objChildren) {
                                                     setShowCustomMenu(true)
@@ -426,7 +426,6 @@ export default function DEBUG() {
 
                                                 arrData.push(object)
                                                 fristIndex++
-
                                                 //break
                                             } else {
                                                 secondIndex++

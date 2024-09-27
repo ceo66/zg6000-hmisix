@@ -212,7 +212,7 @@ const CustomServiceInfoTable = forwardRef(({ orgdata, moduleData, mqttObj, colum
     context.subscribe(moduleData, mqttObj.type, mqttObj.topics)
     const mqttPubSub = PubSub.subscribe(moduleData, (msg, data) => {
       let { type, content } = data
-      //  console.log('debug', data)
+      console.log('debug', data)
 
       if (type === mqttObj.type) {
 
