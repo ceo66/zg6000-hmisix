@@ -361,7 +361,7 @@ const columnsCfgEqu = [
         title: '模型数据ID',
         dataIndex: 'dataModelID',
         isRTField: false,
-        width: 160,
+        width: 150,
       },
 
 

@@ -5,7 +5,7 @@ import CustomTable from "../../components/CustomTable/CustomTable"
 
 const columns = [
   {
-    title: 'id',
+    title: 'Sid',
     dataIndex: 'id',
     width: 110,
     sorter: (a, b) => {
@@ -24,7 +24,7 @@ const columns = [
   {
     title: '名称',
     dataIndex: 'name',
-    width: 100,
+    width: 90,
     isRTField: false,
     isSearchKey: true
   },

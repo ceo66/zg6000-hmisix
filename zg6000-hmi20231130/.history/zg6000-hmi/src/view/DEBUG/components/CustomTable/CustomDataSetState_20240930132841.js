@@ -486,7 +486,7 @@ function CustomDataSetState({ orgdata, moduleData, itemid, itemkey }) {
         <Radio.Group
           onChange={handleRadioChange}
           value={tableName}>
-          <Radio value={"mp_param_dataset_yx"} >遥信数据</Radio>
+          <Radio value={"mp_param_dataset_yx"} >s遥信数据</Radio>
           <Radio value={"mp_param_dataset_yc"}>遥测数据</Radio>
           <Radio value={"mp_param_dataset_ym"}>遥脉数据</Radio>
           <Radio value={"mp_param_dataset_text"}>文本数据</Radio>
@@ -512,7 +512,7 @@ function CustomDataSetState({ orgdata, moduleData, itemid, itemkey }) {
               columns={columns}
               dataSource={data.slice((currentPage - 1) * pageSize, currentPage * pageSize)}
               pagination={false}
-              scroll={{ x: 2400, y: 520 }}
+              scroll={{ x: 2400, y: 500 }}
               bordered
               onRow={(record) => {
                 return {
@@ -534,6 +534,67 @@ function CustomDataSetState({ orgdata, moduleData, itemid, itemkey }) {
         okText="设置"// 点击确认关闭
       >
         {selectedRowData ? (
+          // <div>
+          //   <p><strong>ID:</strong> {selectedRowData.id}</p>
+          //   <p><strong>名称:</strong> {selectedRowData.name}</p>
+          //   <p><strong>原始值 :
+          //     <input
+          //       style={{ backgroundColor: '#bbbbbb' }}
+          //       value={inputrtRawValue}
+          //       onChange={handlertRawValueChange}></input>
+          //   </strong></p>
+
+          //   <p><strong>实时值 :
+          //     <input value={inputrtNewValue}
+          //       onChange={handlertNewValueChange}
+          //       style={{ backgroundColor: '#bbbbbb' }}
+          //     />
+          //     <Checkbox
+          //       checked={isCheckedData}
+          //       onChange={handleCheckDataChange}
+          //     >
+          //       写入数据库
+          //     </Checkbox>
+          //   </strong></p>
+
+          //   <p><strong>模拟值 :
+          //     <input
+          //       style={{ backgroundColor: '#bbbbbb' }}
+          //       value={inputrtSimulateValue}
+          //       onChange={handlertSimulateValueChange} />
+          //     <Checkbox
+          //       checked={isCheckedAnalogFlags}
+          //       onChange={handleCheckAnalogFlags} >模拟标志</Checkbox>
+          //   </strong>
+          //   </p>
+
+          //   <p><strong>   品     质    :
+          //     <input
+          //       style={{ backgroundColor: '#bbbbbb' }}
+          //       value={inputrtQualityFlag}
+          //       onChange={handlertQualityFlagChange} />
+
+          //   </strong></p>
+          //   <p><strong>状态标记:
+          //     <input
+          //       style={{ backgroundColor: '#bbbbbb' }}
+          //       value={inputrtStateFlag}
+          //       onChange={handlertStateFlagChange} />
+          //   </strong></p>
+
+          //   <p>
+          //     <strong>
+          //       状态值    :
+          //       <input value={inputrtStateValue}
+          //         onChange={handlertStateValueChange}
+          //         style={{ backgroundColor: '#bbbbbb' }}
+          //       />
+          //       <Checkbox
+          //         checked={isCheckedWriteState}
+          //         onChange={handleCheckedWriteState}>是否写入状态值</Checkbox>
+          //     </strong>
+          //   </p>
+          // </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
             <div style={{ display: 'flex', alignItems: 'center' }}>
               <p style={{ width: '150px', margin: '0' }}><strong>ID:</strong></p>

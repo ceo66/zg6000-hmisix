@@ -24,7 +24,7 @@ const columns = [
   {
     title: '名称',
     dataIndex: 'name',
-    width: 100,
+    width: 95,
     isRTField: false,
     isSearchKey: true
   },

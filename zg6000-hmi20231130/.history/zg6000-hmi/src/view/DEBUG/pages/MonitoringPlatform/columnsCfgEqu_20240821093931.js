@@ -355,13 +355,13 @@ const columnsCfgEqu = [
         title: '数据集ID',
         dataIndex: 'datasetID',
         isRTField: false,
-        width: 155,
+        width: 150,
       },
       {
         title: '模型数据ID',
         dataIndex: 'dataModelID',
         isRTField: false,
-        width: 160,
+        width: 150,
       },
 
 
