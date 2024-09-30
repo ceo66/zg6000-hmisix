@@ -576,7 +576,7 @@ function CustomportmapState({ orgdata, moduleData, itemid, itemkey, recvMapID, s
                 columns={columns}
                 scroll={{ x: 2000, y: 450 }}
                 dataSource={data}
-                bordered
+
               // data={data}
               //dataSource={data}
               // filterCondition={(item)=>item.port_mapID ==='1765927249066313' }

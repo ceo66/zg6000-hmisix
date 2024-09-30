@@ -26,6 +26,8 @@ function DevicePopupStatePage({ id, moduleData }) {
   const searchInput = useRef(null);
   const [searchText, setSearchText] = useState('');
   const [searchedColumn, setSearchedColumn] = useState('');
+
+  // console.log("ii", id);
   const arrData = useRef([])
   const [MqttObj, setMqttObj] = useState({
     type: 'DevicePopupStatePage',
@@ -293,7 +295,7 @@ function DevicePopupStatePage({ id, moduleData }) {
           }}
           value={value}>
 
-          <Radio value={"mp_param_dataset_yx"}>遥信数据</Radio>
+          <Radio value={"mp_param_dataset_yx"}>s遥信数据</Radio>
           <Radio value={"mp_param_dataset_yc"}>遥测数据</Radio>
           <Radio value={"mp_param_dataset_ym"}>遥脉数据</Radio>
           <Radio value={"mp_param_dataset_text"}>文本数据</Radio>

@@ -26,6 +26,8 @@ function DevicePopupStatePage({ id, moduleData }) {
   const searchInput = useRef(null);
   const [searchText, setSearchText] = useState('');
   const [searchedColumn, setSearchedColumn] = useState('');
+
+  // console.log("ii", id);
   const arrData = useRef([])
   const [MqttObj, setMqttObj] = useState({
     type: 'DevicePopupStatePage',
