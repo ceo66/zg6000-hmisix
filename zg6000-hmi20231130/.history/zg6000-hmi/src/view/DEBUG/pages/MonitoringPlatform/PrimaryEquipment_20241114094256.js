@@ -556,78 +556,139 @@ function PrimaryEquipmentPage({ orgdata, moduleData, itemid, itemkey }) {
 
 
 
+  ]
+
+
+  //实现表头的大小可以改变
+  const ResizableTitle = (props) => {
+    const { onResize, width, ...restProps } = props;
+
+    if (!width) {
+      return <th {...restProps} />;
+    }
+
+    return (
+      <Resizable
+        width={width}
+        height={0}
+        onResize={onResize}
+        draggableOpts={{ enableUserSelectHack: false }}
+      >
+        <th {...restProps} />
+      </Resizable>
+    );
+  };
+
+  const columnsData = [
+    {
+      title: 'Name',
+      dataIndex: 'name',
+      key: 'name',
+      width: 150,
+    },
+    {
+      title: 'Age',
+      dataIndex: 'age',
+      key: 'age',
+      width: 100,
+    },
+    {
+      title: 'Address',
+      dataIndex: 'address',
+      key: 'address',
+      width: 200,
+    },
   ];
 
-  //搜索功能
+  const ResizableTable = () => {
+    const [columns, setColumns] = useState(columnsData);
 
+    const handleResize = (index) => (e, { size }) => {
+      const newColumns = [...columns];
+      newColumns[index] = {
+        ...newColumns[index],
+        width: size.width,
+      };
+      setColumns(newColumns);
+    };
 
-  return (
+    const mergedColumns = columns.map((col, index) => ({
+      ...col,
+      onHeaderCell: (column) => ({
+        width: column.width,
+        onResize: handleResize(index),
+      }),
+    }));
 
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-      <div style={{ display: 'flex', height: '6%' }}>
+    return (
 
-        <Button
-          style={{ backgroundColor: '#1890ff', borderColor: '#1890ff', color: '#fff' }}
-          onClick={() => setModalVisible(true)}>
-          查看设备数据
-        </Button>
-        <div style={{ marginLeft: 'auto' }}>
-          <Pagination {...paginationProps} />
+      <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+        <div style={{ display: 'flex', height: '6%' }}>
+
+          <Button
+            style={{ backgroundColor: '#1890ff', borderColor: '#1890ff', color: '#fff' }}
+            onClick={() => setModalVisible(true)}>
+            查看设备数据
+          </Button>
+          <div style={{ marginLeft: 'auto' }}>
+            <Pagination {...paginationProps} />
+          </div>
+
         </div>
 
-      </div>
+        {columns.length > 0 && (
+          <div className="custom-scroll-container">
+            <div className="vertical-scroll-content">
+              <div className="horizontal-scroll-wrapper">
+                {/* <CustomTableSe */}
+                <Table
+                  bordered
+                  size={'small'}
+                  sticky={true}
+                  //    columns={columns}
+                  columns={columnssed}
 
-      {columns.length > 0 && (
-        <div className="custom-scroll-container">
-          <div className="vertical-scroll-content">
-            <div className="horizontal-scroll-wrapper">
-              {/* <CustomTableSe */}
-              <Table
-                bordered
-                size={'small'}
-                sticky={true}
-                //    columns={columns}
-                columns={columnssed}
-                dataSource={data.slice((currentPage - 1) * pageSize, currentPage * pageSize)}
-                scroll={{ x: 2400, y: 520 }}
-                pagination={false}
-                rowKey="id"
-                rowClassName={(record) => (record.id === selectedRowId ? 'selected-row' : '')}
-                onRow={(record) => ({
-                  onClick: () => handleRowClick(record),
-                })}
-              />
+
+                  dataSource={data.slice((currentPage - 1) * pageSize, currentPage * pageSize)}
+                  scroll={{ x: 2400, y: 520 }}
+                  pagination={false}
+                  rowKey="id"
+                  rowClassName={(record) => (record.id === selectedRowId ? 'selected-row' : '')}
+                  onRow={(record) => ({
+                    onClick: () => handleRowClick(record),
+                  })}
+                />
+              </div>
             </div>
           </div>
-        </div>
-      )
-      }
+        )
+        }
 
-      <Modal
-        title="设备数据"
-        // visible={modalVisible}
-        open={modalVisible}
-        // onCancel={handleModalClose}
+        <Modal
+          title="设备数据"
+          // visible={modalVisible}
+          open={modalVisible}
+          // onCancel={handleModalClose}
 
-        onCancel={() => setModalVisible(false)}
-        footer={null}
-        closable={true}
-        centered={true}
+          onCancel={() => setModalVisible(false)}
+          footer={null}
+          closable={true}
+          centered={true}
 
-        className="fixed-modal"  // 应用自定义的CSS类
+          className="fixed-modal"  // 应用自定义的CSS类
 
-      >
-        <div style={{ marginBottom: 0 }}>
+        >
+          <div style={{ marginBottom: 0 }}>
 
-        </div>
-        <DevicePopupStatePage id={selectedRowId}
-          moduleData={moduleData}
-        />
+          </div>
+          <DevicePopupStatePage id={selectedRowId}
+            moduleData={moduleData}
+          />
 
-      </Modal>
-    </div>
-  );
-}
+        </Modal>
+      </div>
+    );
+  }
 
 
-export default PrimaryEquipmentPage
+  export default PrimaryEquipmentPage

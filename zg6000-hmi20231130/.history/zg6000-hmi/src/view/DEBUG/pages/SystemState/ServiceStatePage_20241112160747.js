@@ -41,12 +41,12 @@ const columns = [
     dataIndex: 'isEnable',
     width: 60,
     isRTField: false,
-    render: (text, record) => (
+    render: (isEnable) => (
+      <Tag color={isEnable === 1 ? 'green' : 'red'}>
+        {isEnable === 1 ? '启用' : '禁用'}
+      </Tag>
+    ),
 
-      <div style={{ color: text === "1" ? 'green' : 'red' }}>
-        {text === "1" ? "启用" : "禁止"}
-      </div>
-    )
   },
 
   {

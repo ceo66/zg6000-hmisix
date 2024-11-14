@@ -939,13 +939,11 @@ const columnsCfgEqu = [
         dataIndex: 'isEnable',
         width: 110,
         isRTField: false,
-
-        render: (text) => (
-          <div style={{ color: text == 1 ? 'green' : 'red' }}>
-            {text == 1 ? "启用" : "禁用"}
-          </div>
-        )
-
+        render: (isEnable) => (
+          <Tag color={parseInt(isEnable, 10) === 1 ? 'green' : 'red'}>
+            {parseInt(isEnable, 10) === 1 ? '启用' : '禁用'}
+          </Tag>
+        ),
 
       },
       {

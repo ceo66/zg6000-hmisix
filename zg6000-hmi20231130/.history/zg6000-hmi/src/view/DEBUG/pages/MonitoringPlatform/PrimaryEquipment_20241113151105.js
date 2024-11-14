@@ -15,8 +15,7 @@ import PubSub from 'pubsub-js'
 import columnsCfgEqu from './columnsCfgEqu'
 import { SearchOutlined, CloseOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words'
-import { Resizable } from 'react-resizable';
-import 'react-resizable/css/styles.css';
+
 
 function PrimaryEquipmentPage({ orgdata, moduleData, itemid, itemkey }) {
 
@@ -556,9 +555,311 @@ function PrimaryEquipmentPage({ orgdata, moduleData, itemid, itemkey }) {
 
 
 
-  ];
+  ]
 
-  //搜索功能
+  // 可调整列宽的表头组件
+  const ResizableTitle = (props) => {
+    const { onResize, width, ...restProps } = props;
+
+    if (!width) {
+      return <th {...restProps} />;
+    }
+
+    return (
+      <Resizable
+        width={width}
+        height={0}
+        handle={
+          <span
+            className="react-resizable-handle"
+            onClick={(e) => e.stopPropagation()}
+          />
+        }
+        onResize={onResize}
+        draggableOpts={{ enableUserSelectHack: false }}
+      >
+        <th {...restProps} />
+      </Resizable>
+    );
+  };
+
+  const YourTableComponent = () => {
+    const [columnsth, setColumnsth] = useState(
+      [
+        {
+          title: 'id',
+          dataIndex: 'id',
+          width: 210,
+          sorter: (a, b) => {
+            if (a > b) {
+              return 1
+            }
+            else if (a === b) {
+              return 0
+            }
+            else {
+              return 1
+            }
+          },
+          isRTField: false,
+          isSearchKey: true,
+        },
+        {
+          title: '名称',
+          dataIndex: 'name',
+          width: 220,
+          isRTField: false,
+          //  isSearchKey: true,
+
+
+        },
+        {
+          title: '是否启用',
+          dataIndex: 'isEnable',
+          width: 110,
+          isRTField: false,
+
+          render: (text) => (
+            <div style={{ color: text == 1 ? 'green' : 'red' }}>
+              {text == 1 ? "启用" : "禁用"}
+            </div>
+          )
+
+
+        },
+        {
+          title: '逻辑名称',
+          dataIndex: 'logicalName',
+          width: 210,
+          isRTField: false
+
+        },
+
+        {
+          title: '变量标识',
+          dataIndex: 'deviceTag',
+          width: 160,
+          isRTField: false
+        },
+        {
+          title: '类别ID',
+          dataIndex: 'categoryID',
+          width: 180,
+          isRTField: false,
+        },
+        {
+          title: '类型ID',
+          dataIndex: 'typeID',
+          width: 200,
+          isRTField: false
+        },
+
+        {
+          title: '子系统ID',
+          dataIndex: 'subsystemID',
+          width: 110,
+          isRTField: false
+        },
+        {
+          title: '专业ID',
+          dataIndex: 'majorID',
+          width: 150,
+          isRTField: false
+        },
+        // {
+        //   title: '是否启用',
+        //   dataIndex: 'isEnable',
+        //   width: 110,
+        //   isRTField: false
+        // },
+        {
+          title: '专业ID',
+          dataIndex: 'majorID',
+          width: 160,
+          isRTField: false
+        },
+        {
+          title: '对时模式',
+          dataIndex: 'timeModeID',
+          width: 220,
+          isRTField: false
+        },
+        {
+          title: 'A网地址',
+          dataIndex: 'rtANetState',
+          width: 100,
+          isRTField: true
+        },
+        {
+          title: 'A网状态',
+          dataIndex: 'rtANetState',
+          width: 100,
+          isRTField: true
+        },
+        {
+          title: '主备状态',
+          dataIndex: 'rtMasterState',
+          width: 110,
+          isRTField: true
+        },
+        {
+          title: '是否发布',
+          dataIndex: 'isPublishMQ',
+          width: 120,
+          isRTField: false
+        },
+        {
+          title: '所属应用节点ID',
+          dataIndex: 'appNodeID',
+          width: 190,
+          isRTField: false
+        },
+        {
+          title: '数据集ID',
+          dataIndex: 'datasetID',
+          width: 200,
+          isRTField: false
+        },
+        {
+          title: '语言',
+          dataIndex: 'voice',
+          width: 170,
+          isRTField: false
+        },
+        {
+          title: 'B网地址',
+          dataIndex: 'bNetAddr',
+          width: 100,
+          isRTField: false
+        },
+        {
+          title: '定时发送周期',
+          dataIndex: 'publishInterval',
+          width: 140,
+          isRTField: false
+        },
+        {
+          title: '关联设备资产ID',
+          dataIndex: 'dpDeviceID',
+          width: 150,
+          isRTField: false
+        },
+        {
+          title: '位置',
+          dataIndex: 'position',
+          width: 120,
+          isRTField: false
+        },
+        {
+          title: '用户名',
+          dataIndex: 'userName',
+          width: 90,
+          isRTField: false
+        },
+        {
+          title: '电压等级',
+          dataIndex: 'volLevelID',
+          width: 110,
+          isRTField: false
+        },
+        {
+          title: '密码',
+          dataIndex: 'password',
+          width: 100,
+          isRTField: false
+        },
+        {
+          title: 'C网地址',
+          dataIndex: 'cNetAddr',
+          width: 100,
+          isRTField: false
+        },
+        {
+          title: 'D网地址',
+          dataIndex: 'dNetAddr',
+          width: 110,
+          isRTField: false
+        },
+        {
+          title: '通信状态',
+          dataIndex: 'rtState',
+          width: 110,
+          isRTField: true
+        },
+
+        {
+          title: 'B网状态',
+          dataIndex: 'rtBNetState',
+          width: 100,
+          isRTField: true
+        },
+        {
+          title: 'C网状态',
+          dataIndex: 'rtCNetState',
+          width: 100,
+          isRTField: true
+        },
+        {
+          title: 'D网状态',
+          dataIndex: 'rtDNetState',
+          width: 110,
+          isRTField: true
+        },
+        {
+          title: '主网标识',
+          dataIndex: 'rtMasterNet',
+          width: 110,
+          isRTField: true
+        },
+        {
+          title: '拓扑有电状态',
+          dataIndex: 'rtTopoElec',
+          width: 140,
+          isRTField: true
+        },
+        {
+          title: '拓扑接地状态',
+          dataIndex: 'rtTopoGround',
+          width: 140,
+          isRTField: true
+        },
+        {
+          title: '主图邻接点状态',
+          dataIndex: 'rtAdjoinNode',
+          width: 150,
+          isRTField: true
+        },
+        {
+          title: '配置版本',
+          dataIndex: 'rtCfgVersion',
+          width: 140,
+          isRTField: true
+        }
+
+
+
+      ]
+    );
+
+    // 调整列宽
+    const handleResize = (index) => (e, { size }) => {
+      const nextColumns = [...columnsth];
+      nextColumns[index] = {
+        ...nextColumns[index],
+        width: size.width,
+      };
+      setColumnsth(nextColumns);
+    };
+
+    // 创建可调整的列配置
+    const resizableColumns = columnsth.map((col, index) => ({
+      ...col,
+      onHeaderCell: (column) => ({
+        width: column.width,
+        onResize: handleResize(index),
+      }),
+    }));
+  }
 
 
   return (
@@ -587,7 +888,13 @@ function PrimaryEquipmentPage({ orgdata, moduleData, itemid, itemkey }) {
                 size={'small'}
                 sticky={true}
                 //    columns={columns}
-                columns={columnssed}
+                // columns={columnssed}
+                columns={resizableColumns}
+                components={{
+                  header: {
+                    cell: ResizableTitle,
+                  },
+                }}
                 dataSource={data.slice((currentPage - 1) * pageSize, currentPage * pageSize)}
                 scroll={{ x: 2400, y: 520 }}
                 pagination={false}

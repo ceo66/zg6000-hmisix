@@ -1,5 +1,5 @@
-import { Table, Tag } from 'antd';
-import React from 'react';
+
+
 const columnsCfgEqu = [
   {
     key: "mp_param_dataset_yx",
@@ -938,15 +938,7 @@ const columnsCfgEqu = [
         title: '是否启用',
         dataIndex: 'isEnable',
         width: 110,
-        isRTField: false,
-
-        render: (text) => (
-          <div style={{ color: text == 1 ? 'green' : 'red' }}>
-            {text == 1 ? "启用" : "禁用"}
-          </div>
-        )
-
-
+        isRTField: false
       },
       {
         title: '逻辑名称',

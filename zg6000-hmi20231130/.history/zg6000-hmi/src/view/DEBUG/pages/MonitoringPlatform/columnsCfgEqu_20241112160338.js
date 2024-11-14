@@ -1,5 +1,5 @@
 import { Table, Tag } from 'antd';
-import React from 'react';
+
 const columnsCfgEqu = [
   {
     key: "mp_param_dataset_yx",
@@ -939,14 +939,11 @@ const columnsCfgEqu = [
         dataIndex: 'isEnable',
         width: 110,
         isRTField: false,
-
-        render: (text) => (
-          <div style={{ color: text == 1 ? 'green' : 'red' }}>
-            {text == 1 ? "启用" : "禁用"}
-          </div>
-        )
-
-
+        render: (isEnable) => (
+          <Tag color={isEnable === 1 ? 'green' : 'red'}>
+            {isEnable === 1 ? '启用' : '禁用'}
+          </Tag>
+        ),
       },
       {
         title: '逻辑名称',

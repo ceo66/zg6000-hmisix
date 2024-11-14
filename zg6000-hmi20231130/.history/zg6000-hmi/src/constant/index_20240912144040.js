@@ -1,6 +1,6 @@
 let constVar = {
     IS_DEBUG: true,//调试状态 
-    DEBUG_SERVER_IP: "192.168.100.13",
+    DEBUG_SERVER_IP: "192.168.0.180",
     LOCAL_CLIENT_ID: "clientUnique",//客户端id
     IS_EXPAND_MENU: "isExpandMenu",
     URL_SUFFIX: "urlSuffix",//url地址的后缀，用于刷新网页后重新定位到指定框架

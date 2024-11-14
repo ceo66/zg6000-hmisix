@@ -42,7 +42,7 @@ const columns = [
     width: 60,
     isRTField: false,
     render: (text, record) => (
-
+      console.log(text, "te"),
       <div style={{ color: text === "1" ? 'green' : 'red' }}>
         {text === "1" ? "启用" : "禁止"}
       </div>

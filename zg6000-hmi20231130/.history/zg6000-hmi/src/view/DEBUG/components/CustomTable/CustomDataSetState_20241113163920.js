@@ -115,7 +115,7 @@ function CustomDataSetState({ orgdata, moduleData, itemid, itemkey }) {
     const mqttPubSub = PubSub.subscribe(moduleData, (msg, data) => {
       // console.log("59");
       let { type, content } = data
-      //   console.log("cons23", content);
+      console.log("cons23", content);
       if (type === mqttObj.type) {
         if (content.operation === "update") {
 
@@ -282,7 +282,6 @@ function CustomDataSetState({ orgdata, moduleData, itemid, itemkey }) {
     setSearchedColumn('');
     searchInput.current.blur(); // close the search input
   };
-
   const handleRadioChange = (e) => {
     const selectedValue = e.target.value;
     setTableName(selectedValue);
@@ -571,6 +570,7 @@ function CustomDataSetState({ orgdata, moduleData, itemid, itemkey }) {
             <Table
               size={'small'}
               sticky={true}
+
               //  columns={columns}
               columns={adaptedColumns}
               dataSource={data.slice((currentPage - 1) * pageSize, currentPage * pageSize)}

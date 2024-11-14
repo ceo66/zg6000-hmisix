@@ -940,12 +940,11 @@ const columnsCfgEqu = [
         width: 110,
         isRTField: false,
 
-        render: (text) => (
-          <div style={{ color: text == 1 ? 'green' : 'red' }}>
-            {text == 1 ? "启用" : "禁用"}
+        render: (text, record) => (
+          <div style={{ color: text === "1" ? 'green' : 'red' }}>
+            {text === "1" ? "启用" : "禁止"}
           </div>
         )
-
 
       },
       {

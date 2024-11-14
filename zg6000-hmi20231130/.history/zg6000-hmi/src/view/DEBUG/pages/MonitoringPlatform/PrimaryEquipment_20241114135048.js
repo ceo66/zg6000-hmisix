@@ -588,6 +588,9 @@ function PrimaryEquipmentPage({ orgdata, moduleData, itemid, itemkey }) {
                 sticky={true}
                 //    columns={columns}
                 columns={columnssed}
+
+
+
                 dataSource={data.slice((currentPage - 1) * pageSize, currentPage * pageSize)}
                 scroll={{ x: 2400, y: 520 }}
                 pagination={false}

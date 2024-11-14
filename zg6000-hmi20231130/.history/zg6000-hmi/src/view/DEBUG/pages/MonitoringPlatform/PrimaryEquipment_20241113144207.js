@@ -15,8 +15,7 @@ import PubSub from 'pubsub-js'
 import columnsCfgEqu from './columnsCfgEqu'
 import { SearchOutlined, CloseOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words'
-import { Resizable } from 'react-resizable';
-import 'react-resizable/css/styles.css';
+
 
 function PrimaryEquipmentPage({ orgdata, moduleData, itemid, itemkey }) {
 
@@ -325,7 +324,7 @@ function PrimaryEquipmentPage({ orgdata, moduleData, itemid, itemkey }) {
     {
       title: '名称',
       dataIndex: 'name',
-      width: 220,
+      width: 210,
       isRTField: false,
       //  isSearchKey: true,
 
@@ -556,10 +555,7 @@ function PrimaryEquipmentPage({ orgdata, moduleData, itemid, itemkey }) {
 
 
 
-  ];
-
-  //搜索功能
-
+  ]
 
   return (
 
@@ -588,6 +584,7 @@ function PrimaryEquipmentPage({ orgdata, moduleData, itemid, itemkey }) {
                 sticky={true}
                 //    columns={columns}
                 columns={columnssed}
+
                 dataSource={data.slice((currentPage - 1) * pageSize, currentPage * pageSize)}
                 scroll={{ x: 2400, y: 520 }}
                 pagination={false}

@@ -1,5 +1,5 @@
-import { Table, Tag } from 'antd';
-import React from 'react';
+
+
 const columnsCfgEqu = [
   {
     key: "mp_param_dataset_yx",
@@ -908,7 +908,7 @@ const columnsCfgEqu = [
     key: 'mp_param_device',
     columns: [
       {
-        title: 'id',
+        title: 'ssid',
         dataIndex: 'id',
         width: 210,
         sorter: (a, b) => {
@@ -931,20 +931,6 @@ const columnsCfgEqu = [
         width: 210,
         isRTField: false,
         //  isSearchKey: true,
-
-
-      },
-      {
-        title: '是否启用',
-        dataIndex: 'isEnable',
-        width: 110,
-        isRTField: false,
-
-        render: (text) => (
-          <div style={{ color: text == 1 ? 'green' : 'red' }}>
-            {text == 1 ? "启用" : "禁用"}
-          </div>
-        )
 
 
       },
@@ -987,12 +973,12 @@ const columnsCfgEqu = [
         width: 150,
         isRTField: false
       },
-      // {
-      //   title: '是否启用',
-      //   dataIndex: 'isEnable',
-      //   width: 110,
-      //   isRTField: false
-      // },
+      {
+        title: '是否启用',
+        dataIndex: 'isEnable',
+        width: 110,
+        isRTField: false
+      },
       {
         title: '专业ID',
         dataIndex: 'majorID',

@@ -42,7 +42,6 @@ const columns = [
     width: 60,
     isRTField: false,
     render: (text, record) => (
-
       <div style={{ color: text === "1" ? 'green' : 'red' }}>
         {text === "1" ? "启用" : "禁止"}
       </div>

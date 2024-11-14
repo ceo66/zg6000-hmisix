@@ -941,8 +941,9 @@ const columnsCfgEqu = [
         isRTField: false,
 
         render: (text) => (
-          <div style={{ color: text == 1 ? 'green' : 'red' }}>
-            {text == 1 ? "启用" : "禁用"}
+          console.log(text, "te"),
+          <div style={{ color: text === "1" ? 'green' : 'red' }}>
+            {text === "1" ? "启用" : "禁用"}
           </div>
         )
 

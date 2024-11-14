@@ -556,10 +556,70 @@ function PrimaryEquipmentPage({ orgdata, moduleData, itemid, itemkey }) {
 
 
 
-  ];
+  ]
 
-  //搜索功能
 
+  //实现表头的大小可以改变
+  const ResizableTitle = (props) => {
+    const { onResize, width, ...restProps } = props;
+
+    if (!width) {
+      return <th {...restProps} />;
+    }
+
+    return (
+      <Resizable
+        width={width}
+        height={0}
+        onResize={onResize}
+        draggableOpts={{ enableUserSelectHack: false }}
+      >
+        <th {...restProps} />
+      </Resizable>
+    );
+  };
+}
+
+const columnsData = [
+  {
+    title: 'Name',
+    dataIndex: 'name',
+    key: 'name',
+    width: 150,
+  },
+  {
+    title: 'Age',
+    dataIndex: 'age',
+    key: 'age',
+    width: 100,
+  },
+  {
+    title: 'Address',
+    dataIndex: 'address',
+    key: 'address',
+    width: 200,
+  },
+];
+
+const ResizableTable = () => {
+  const [columns, setColumns] = useState(columnsData);
+
+  const handleResize = (index) => (e, { size }) => {
+    const newColumns = [...columns];
+    newColumns[index] = {
+      ...newColumns[index],
+      width: size.width,
+    };
+    setColumns(newColumns);
+  };
+
+  const mergedColumns = columns.map((col, index) => ({
+    ...col,
+    onHeaderCell: (column) => ({
+      width: column.width,
+      onResize: handleResize(index),
+    }),
+  }));
 
   return (
 
@@ -588,6 +648,8 @@ function PrimaryEquipmentPage({ orgdata, moduleData, itemid, itemkey }) {
                 sticky={true}
                 //    columns={columns}
                 columns={columnssed}
+
+
                 dataSource={data.slice((currentPage - 1) * pageSize, currentPage * pageSize)}
                 scroll={{ x: 2400, y: 520 }}
                 pagination={false}

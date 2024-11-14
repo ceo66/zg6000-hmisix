@@ -556,10 +556,7 @@ function PrimaryEquipmentPage({ orgdata, moduleData, itemid, itemkey }) {
 
 
 
-  ];
-
-  //搜索功能
-
+  ]
 
   return (
 
@@ -588,6 +585,12 @@ function PrimaryEquipmentPage({ orgdata, moduleData, itemid, itemkey }) {
                 sticky={true}
                 //    columns={columns}
                 columns={columnssed}
+
+                components={{
+                  header: {
+                    cell: ResizableTitle,
+                  },
+                }}
                 dataSource={data.slice((currentPage - 1) * pageSize, currentPage * pageSize)}
                 scroll={{ x: 2400, y: 520 }}
                 pagination={false}

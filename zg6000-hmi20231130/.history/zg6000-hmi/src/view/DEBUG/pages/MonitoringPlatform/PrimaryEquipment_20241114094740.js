@@ -556,78 +556,380 @@ function PrimaryEquipmentPage({ orgdata, moduleData, itemid, itemkey }) {
 
 
 
-  ];
-
-  //搜索功能
+  ]
 
 
-  return (
+  //实现表头的大小可以改变
+  const ResizableTitle = (props) => {
+    const { onResize, width, ...restProps } = props;
 
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-      <div style={{ display: 'flex', height: '6%' }}>
+    if (!width) {
+      return <th {...restProps} />;
+    }
 
-        <Button
-          style={{ backgroundColor: '#1890ff', borderColor: '#1890ff', color: '#fff' }}
-          onClick={() => setModalVisible(true)}>
-          查看设备数据
-        </Button>
-        <div style={{ marginLeft: 'auto' }}>
-          <Pagination {...paginationProps} />
-        </div>
+    return (
+      <Resizable
+        width={width}
+        height={0}
+        onResize={onResize}
+        draggableOpts={{ enableUserSelectHack: false }}
+      >
+        <th {...restProps} />
+      </Resizable>
+    );
+  };
 
-      </div>
 
-      {columns.length > 0 && (
-        <div className="custom-scroll-container">
-          <div className="vertical-scroll-content">
-            <div className="horizontal-scroll-wrapper">
-              {/* <CustomTableSe */}
-              <Table
-                bordered
-                size={'small'}
-                sticky={true}
-                //    columns={columns}
-                columns={columnssed}
-                dataSource={data.slice((currentPage - 1) * pageSize, currentPage * pageSize)}
-                scroll={{ x: 2400, y: 520 }}
-                pagination={false}
-                rowKey="id"
-                rowClassName={(record) => (record.id === selectedRowId ? 'selected-row' : '')}
-                onRow={(record) => ({
-                  onClick: () => handleRowClick(record),
-                })}
-              />
-            </div>
-          </div>
+  const columnsData = [
+    {
+      title: 'id',
+      dataIndex: 'id',
+      width: 210,
+      sorter: (a, b) => {
+        if (a > b) {
+          return 1
+        }
+        else if (a === b) {
+          return 0
+        }
+        else {
+          return 1
+        }
+      },
+      isRTField: false,
+      isSearchKey: true,
+    },
+    {
+      title: '名称',
+      dataIndex: 'name',
+      width: 220,
+      isRTField: false,
+      //  isSearchKey: true,
+
+
+    },
+    {
+      title: '是否启用',
+      dataIndex: 'isEnable',
+      width: 110,
+      isRTField: false,
+
+      render: (text) => (
+        <div style={{ color: text == 1 ? 'green' : 'red' }}>
+          {text == 1 ? "启用" : "禁用"}
         </div>
       )
-      }
 
-      <Modal
-        title="设备数据"
-        // visible={modalVisible}
-        open={modalVisible}
-        // onCancel={handleModalClose}
 
-        onCancel={() => setModalVisible(false)}
-        footer={null}
-        closable={true}
-        centered={true}
+    },
+    {
+      title: '逻辑名称',
+      dataIndex: 'logicalName',
+      width: 210,
+      isRTField: false
 
-        className="fixed-modal"  // 应用自定义的CSS类
+    },
 
-      >
-        <div style={{ marginBottom: 0 }}>
+    {
+      title: '变量标识',
+      dataIndex: 'deviceTag',
+      width: 160,
+      isRTField: false
+    },
+    {
+      title: '类别ID',
+      dataIndex: 'categoryID',
+      width: 180,
+      isRTField: false,
+    },
+    {
+      title: '类型ID',
+      dataIndex: 'typeID',
+      width: 200,
+      isRTField: false
+    },
+
+    {
+      title: '子系统ID',
+      dataIndex: 'subsystemID',
+      width: 110,
+      isRTField: false
+    },
+    {
+      title: '专业ID',
+      dataIndex: 'majorID',
+      width: 150,
+      isRTField: false
+    },
+    // {
+    //   title: '是否启用',
+    //   dataIndex: 'isEnable',
+    //   width: 110,
+    //   isRTField: false
+    // },
+    {
+      title: '专业ID',
+      dataIndex: 'majorID',
+      width: 160,
+      isRTField: false
+    },
+    {
+      title: '对时模式',
+      dataIndex: 'timeModeID',
+      width: 220,
+      isRTField: false
+    },
+    {
+      title: 'A网地址',
+      dataIndex: 'rtANetState',
+      width: 100,
+      isRTField: true
+    },
+    {
+      title: 'A网状态',
+      dataIndex: 'rtANetState',
+      width: 100,
+      isRTField: true
+    },
+    {
+      title: '主备状态',
+      dataIndex: 'rtMasterState',
+      width: 110,
+      isRTField: true
+    },
+    {
+      title: '是否发布',
+      dataIndex: 'isPublishMQ',
+      width: 120,
+      isRTField: false
+    },
+    {
+      title: '所属应用节点ID',
+      dataIndex: 'appNodeID',
+      width: 190,
+      isRTField: false
+    },
+    {
+      title: '数据集ID',
+      dataIndex: 'datasetID',
+      width: 200,
+      isRTField: false
+    },
+    {
+      title: '语言',
+      dataIndex: 'voice',
+      width: 170,
+      isRTField: false
+    },
+    {
+      title: 'B网地址',
+      dataIndex: 'bNetAddr',
+      width: 100,
+      isRTField: false
+    },
+    {
+      title: '定时发送周期',
+      dataIndex: 'publishInterval',
+      width: 140,
+      isRTField: false
+    },
+    {
+      title: '关联设备资产ID',
+      dataIndex: 'dpDeviceID',
+      width: 150,
+      isRTField: false
+    },
+    {
+      title: '位置',
+      dataIndex: 'position',
+      width: 120,
+      isRTField: false
+    },
+    {
+      title: '用户名',
+      dataIndex: 'userName',
+      width: 90,
+      isRTField: false
+    },
+    {
+      title: '电压等级',
+      dataIndex: 'volLevelID',
+      width: 110,
+      isRTField: false
+    },
+    {
+      title: '密码',
+      dataIndex: 'password',
+      width: 100,
+      isRTField: false
+    },
+    {
+      title: 'C网地址',
+      dataIndex: 'cNetAddr',
+      width: 100,
+      isRTField: false
+    },
+    {
+      title: 'D网地址',
+      dataIndex: 'dNetAddr',
+      width: 110,
+      isRTField: false
+    },
+    {
+      title: '通信状态',
+      dataIndex: 'rtState',
+      width: 110,
+      isRTField: true
+    },
+
+    {
+      title: 'B网状态',
+      dataIndex: 'rtBNetState',
+      width: 100,
+      isRTField: true
+    },
+    {
+      title: 'C网状态',
+      dataIndex: 'rtCNetState',
+      width: 100,
+      isRTField: true
+    },
+    {
+      title: 'D网状态',
+      dataIndex: 'rtDNetState',
+      width: 110,
+      isRTField: true
+    },
+    {
+      title: '主网标识',
+      dataIndex: 'rtMasterNet',
+      width: 110,
+      isRTField: true
+    },
+    {
+      title: '拓扑有电状态',
+      dataIndex: 'rtTopoElec',
+      width: 140,
+      isRTField: true
+    },
+    {
+      title: '拓扑接地状态',
+      dataIndex: 'rtTopoGround',
+      width: 140,
+      isRTField: true
+    },
+    {
+      title: '主图邻接点状态',
+      dataIndex: 'rtAdjoinNode',
+      width: 150,
+      isRTField: true
+    },
+    {
+      title: '配置版本',
+      dataIndex: 'rtCfgVersion',
+      width: 140,
+      isRTField: true
+    }
+
+
+
+  ]
+
+  const ResizableTable = () => {
+    const [columnsth, setColumnsth] = useState(columnsData);
+
+    const handleResize = (index) => (e, { size }) => {
+      const newColumns = [...columnsth];
+      newColumns[index] = {
+        ...newColumns[index],
+        width: size.width,
+      };
+      setColumnsth(newColumns);
+    };
+
+    const mergedColumns = columnsth.map((col, index) => ({
+      ...col,
+      onHeaderCell: (columnth) => ({
+        width: columnth.width,
+        onResize: handleResize(index),
+      }),
+    }));
+
+    return (
+
+      <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+        <div style={{ display: 'flex', height: '6%' }}>
+
+          <Button
+            style={{ backgroundColor: '#1890ff', borderColor: '#1890ff', color: '#fff' }}
+            onClick={() => setModalVisible(true)}>
+            查看设备数据
+          </Button>
+          <div style={{ marginLeft: 'auto' }}>
+            <Pagination {...paginationProps} />
+          </div>
 
         </div>
-        <DevicePopupStatePage id={selectedRowId}
-          moduleData={moduleData}
-        />
 
-      </Modal>
-    </div>
-  );
+        {columns.length > 0 && (
+          <div className="custom-scroll-container">
+            <div className="vertical-scroll-content">
+              <div className="horizontal-scroll-wrapper">
+                {/* <CustomTableSe */}
+                <Table
+                  bordered
+                  size={'small'}
+                  sticky={true}
+                  //    columns={columns}
+                  //    columns={columnssed}
+                  components={{
+                    header: {
+                      cell: ResizableTitle,
+                    },
+                  }}
+                  columns={mergedColumns}
+
+
+                  dataSource={data.slice((currentPage - 1) * pageSize, currentPage * pageSize)}
+                  scroll={{ x: 2400, y: 520 }}
+                  pagination={false}
+                  rowKey="id"
+                  rowClassName={(record) => (record.id === selectedRowId ? 'selected-row' : '')}
+                  onRow={(record) => ({
+                    onClick: () => handleRowClick(record),
+                  })}
+                />
+              </div>
+            </div>
+          </div>
+        )
+        }
+
+        <Modal
+          title="设备数据"
+          // visible={modalVisible}
+          open={modalVisible}
+          // onCancel={handleModalClose}
+
+          onCancel={() => setModalVisible(false)}
+          footer={null}
+          closable={true}
+          centered={true}
+
+          className="fixed-modal"  // 应用自定义的CSS类
+
+        >
+          <div style={{ marginBottom: 0 }}>
+
+          </div>
+          <DevicePopupStatePage id={selectedRowId}
+            moduleData={moduleData}
+          />
+
+        </Modal>
+      </div>
+    );
+  }
 }
-
 
 export default PrimaryEquipmentPage

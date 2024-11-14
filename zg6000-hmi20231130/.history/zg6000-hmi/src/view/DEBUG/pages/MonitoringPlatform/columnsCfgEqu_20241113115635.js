@@ -940,11 +940,15 @@ const columnsCfgEqu = [
         width: 110,
         isRTField: false,
 
-        render: (text) => (
-          <div style={{ color: text == 1 ? 'green' : 'red' }}>
-            {text == 1 ? "启用" : "禁用"}
-          </div>
-        )
+        render: (text) => {
+          console.log(text, "te"); // 正确的语句形式
+
+          return (
+            <div style={{ color: text == 1 ? 'green' : 'red', fontWeight: 'bold' }}>
+              {text == 1 ? "启用" : "禁用"}
+            </div>
+          );
+        }
 
 
       },

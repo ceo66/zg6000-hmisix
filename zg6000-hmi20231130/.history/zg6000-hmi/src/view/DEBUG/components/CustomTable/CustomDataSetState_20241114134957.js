@@ -571,6 +571,7 @@ function CustomDataSetState({ orgdata, moduleData, itemid, itemkey }) {
             <Table
               size={'small'}
               sticky={true}
+
               //  columns={columns}
               columns={adaptedColumns}
               dataSource={data.slice((currentPage - 1) * pageSize, currentPage * pageSize)}

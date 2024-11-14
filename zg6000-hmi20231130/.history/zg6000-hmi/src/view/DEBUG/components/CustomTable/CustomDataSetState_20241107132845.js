@@ -115,7 +115,7 @@ function CustomDataSetState({ orgdata, moduleData, itemid, itemkey }) {
     const mqttPubSub = PubSub.subscribe(moduleData, (msg, data) => {
       // console.log("59");
       let { type, content } = data
-      //   console.log("cons23", content);
+      console.log("cons23", content);
       if (type === mqttObj.type) {
         if (content.operation === "update") {
 
@@ -282,7 +282,6 @@ function CustomDataSetState({ orgdata, moduleData, itemid, itemkey }) {
     setSearchedColumn('');
     searchInput.current.blur(); // close the search input
   };
-
   const handleRadioChange = (e) => {
     const selectedValue = e.target.value;
     setTableName(selectedValue);
@@ -522,24 +521,7 @@ function CustomDataSetState({ orgdata, moduleData, itemid, itemkey }) {
       width: getMaxWidth(),
     };
   });
-  //  console.log(adaptedColumns);
-
-  // 添加 useEffect 以监听回车键
-  useEffect(() => {
-    const handleKeyDown = (event) => {
-      if (event.key === 'Enter') {
-        handleModalCloseOk(); // 触发设置按钮的点击事件
-      }
-    };
-
-    // 组件挂载时添加事件监听器
-    document.addEventListener('keydown', handleKeyDown);
-
-    // 组件卸载时移除事件监听器
-    return () => {
-      document.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [handleModalCloseOk]);
+  console.log(adaptedColumns);
 
 
   return (
@@ -571,8 +553,8 @@ function CustomDataSetState({ orgdata, moduleData, itemid, itemkey }) {
             <Table
               size={'small'}
               sticky={true}
-              //  columns={columns}
-              columns={adaptedColumns}
+
+              columns={columns}
               dataSource={data.slice((currentPage - 1) * pageSize, currentPage * pageSize)}
               pagination={false}
               scroll={{ x: 2400, y: 520 }}
